@@ -8,9 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,21 +21,60 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class PersonalInformation extends AppCompatActivity {
-    private TextView fullnametextview;
+    private FirebaseUser user;
+    private DatabaseReference reference;
+    private String userID;
+    /*private TextView fullnametextview;
     private TextView emailtextview;
     private TextView phonenumbertextview;
     private String email, password;
     TextView myTextView;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
-    private static final String USERS = "Users";
+    private static final String USERS = "Users";*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_personal_information);
-        Intent intent = getIntent();
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference("Users");
+        userID=user.getUid();
+        final TextView fullnameTextView=(TextView) findViewById(R.id.fullname);
+        final TextView phonenumberTextView=(TextView) findViewById(R.id.phonenumber);
+        final TextView  emailTextView=(TextView) findViewById(R.id.email);
+       // final TextView numberOfPointsAvailableTextView=(TextView) findViewById(R.id.numberOfPointsAvailables);
+        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userProfile = snapshot.getValue(User.class);
+                if(userProfile != null)
+                {
+                    String fullName = userProfile.fullName;
+                    String userEmail = userProfile.userEmail;
+                    int numberOfAvailablePoints = userProfile.numberOfAvailablePoints;
+                    String phone =userProfile.userPhone;
+                    fullnameTextView.setText(fullName);
+                    phonenumberTextView.setText(phone);
+                    emailTextView.setText(userEmail);
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(PersonalInformation.this,"Did not work",Toast.LENGTH_SHORT).show();
+            }
+
+            //  @Override
+                //   public void onCancelled(@NonNull DatabaseError error) {
+                //  Toast.makeText(UserHomePage.this, "ERROR, Toast.LENGTH_SHORT").show();
+
+                // }
+            });; /* Intent intent = getIntent();
         email = intent.getStringExtra("email");
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference userRef = rootRef.child(USERS);
@@ -64,6 +106,6 @@ public class PersonalInformation extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w(TAG, "Cannot read value");
             }
-        });
+        });*/
     }
 }

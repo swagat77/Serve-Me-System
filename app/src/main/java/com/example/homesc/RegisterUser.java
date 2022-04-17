@@ -95,86 +95,82 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         {
             editTextFullName.setError("Full name is required");
             editTextFullName.requestFocus();
+            return;
         }
-        else if(phoneNumber.isEmpty())
+        if(phoneNumber.isEmpty())
         {
             editTextPhoneNumber.setError("Phone number is required");
             editTextPhoneNumber.requestFocus();
+            return;
         }
-        else if(password.isEmpty())
+        if(password.isEmpty())
         {
             editTextPassword.setError("A password is required");
             editTextPassword.requestFocus();
+            return;
         }
-        else if(email.isEmpty())
+        if(email.isEmpty())
         {
             editTextEmail.setError("An email is required");
             editTextEmail.requestFocus();
+            return;
         }
-        else if(Patterns.EMAIL_ADDRESS.matcher(email).matches() == false)
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches() == false)
         {
             editTextEmail.setError("Please provide a valid email");
             editTextEmail.requestFocus();
+            return;
         }
-        else if(Patterns.PHONE.matcher(phoneNumber).matches() == false)
+        if(Patterns.PHONE.matcher(phoneNumber).matches() == false)
         {
             editTextPhoneNumber.setError("Please provide a valid Phone Number");
             editTextPhoneNumber.requestFocus();
-
+            return;
         }
-        else if(password.length()<8)
+        if(password.length()<8)
         {
             editTextPassword.setError("Please create a password that is at least 8 characters");
             editTextPassword.requestFocus();
+            return;
 
         }
-        else
-        {
+            progressBar.setVisibility(View.VISIBLE);
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
 
-        }
-        progressBar.setVisibility(View.VISIBLE);
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
 
-                if(task.isSuccessful())
-                {
-
-                    User u1 = new User(FullName, email, phoneNumber, numberOfPointsAvailable);
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(u1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        User u1 = new User(FullName,email,phoneNumber,numberOfPointsAvailable);
+                        FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(u1).addOnCompleteListener(new OnCompleteListener<Void>() {
 
 
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful())
-                            {
-                                Toast.makeText(RegisterUser.this, "User has been registered successfully", Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(RegisterUser.this, "registered successfully", Toast.LENGTH_LONG).show();
+                                    // startActivity(new Intent(RegisterUser.this,UserHomePage.class));
+                                     progressBar.setVisibility(View.GONE);
+
+                                } else {
+                                    Toast.makeText(RegisterUser.this, "Failed to YOU KNOW register User. Try again", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+                                }
 
                             }
-                            else
-                            {
-                                Toast.makeText(RegisterUser.this, "Failed to register User. Try again", Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-
-                        }
-                    });
+                        });
+                    } else {
+                        Toast.makeText(RegisterUser.this, "Failed to register User. TRRRRry again", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
                 }
-                else
-                {
-                    Toast.makeText(RegisterUser.this, "Failed to register User. Try again", Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
-        });
+            });
+
+
+        }}
 
 
 
 
 
-    }
 
-
-
-}

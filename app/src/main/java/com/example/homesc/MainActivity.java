@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public TextView register, forgotPassword;
     private EditText editEmail, editPassword;
     private Button signIn;
-    private Button VendorsignIn;
+    private Button VendorSignIn;
     public ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -37,12 +37,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userhomepage);
+        setContentView(R.layout.activity_main);
 
 
 
-        VendorsignIn = (Button) findViewById(R.id.VendorLogin);
-        VendorsignIn.setOnClickListener(this);
+        VendorSignIn = (Button) findViewById(R.id.VendorLogin);
+        VendorSignIn.setOnClickListener(this);
 
         forgotPassword = (TextView) findViewById(R.id.forgotPassword);
         forgotPassword.setOnClickListener(this);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (password.isEmpty()) {
             editPassword.setError("A password is required");
             editPassword.requestFocus();
-        } else {
+        } else {}
             progressBar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (task.isSuccessful()) {
                         //go to home page for user
 
-                            Intent intent = new Intent(MainActivity.this, UserHomePage.class);
+                            Intent intent = new Intent(MainActivity.this, PersonalInformation.class);
                             startActivity(intent);
                         }
 
@@ -128,4 +128,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
     }
-}

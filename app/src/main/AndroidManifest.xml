@@ -28,8 +28,27 @@
             android:name=".Appliances"
             android:exported="false" />
         <activity
+            android:name=".forgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".VendorLogin"
+            android:exported="false" />
+        <activity
+            android:name=".VendorHomePage"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterUser"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterVendor"
+            android:exported="false" />
+        <activity
+            android:name=".UserHomePage"
+            android:exported="false" />
+        <activity
             android:name=".Account"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

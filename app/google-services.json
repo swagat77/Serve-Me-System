@@ -95,9 +95,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:394549185731:android:56e5b35afc665290d22676",
+        "mobilesdk_app_id": "1:394549185731:android:55ce5b7831828743d22676",
         "android_client_info": {
-          "package_name": "com.example.placereq"
+          "package_name": "com.example.orderhistory"
         }
       },
       "oauth_client": [
@@ -124,9 +124,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:394549185731:android:c077ab3c5c2b761dd22676",
+        "mobilesdk_app_id": "1:394549185731:android:56e5b35afc665290d22676",
         "android_client_info": {
-          "package_name": "com.example.searchpage"
+          "package_name": "com.example.placereq"
         }
       },
       "oauth_client": [

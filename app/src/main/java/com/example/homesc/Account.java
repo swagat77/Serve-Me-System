@@ -19,7 +19,7 @@ public class Account extends AppCompatActivity {
         Button PersonalInformation=findViewById(R.id.toPersonalInformation);
         Button Logout=findViewById(R.id.toLogOut);
         Button faq=findViewById(R.id.toFAQ);
-       logout.setOnClickListener(new View.OnClickListener() {
+       Logout.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                FirebaseAuth.getInstance().signOut();

@@ -12,12 +12,12 @@
         android:id="@+id/editTextTextPersonName3"
         android:layout_width="401dp"
         android:layout_height="51dp"
+        android:background="@color/teal_200"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="         Personal Information"
-        android:textStyle="bold"
         android:textSize="27dp"
-        android:background="@color/teal_200"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.069" />
 
     <EditText
-        android:id="@+id/fullname_textview"
+        android:id="@+id/fullnametitle"
         android:layout_width="407dp"
         android:layout_height="55dp"
         android:ems="10"
@@ -43,14 +43,14 @@
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Email Address:"
-
         android:inputType="textEmailAddress"
+
+        android:text="Email Address:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullname_textview"
+        app:layout_constraintTop_toBottomOf="@+id/fullnametitle"
         app:layout_constraintVertical_bias="0.096" />
 
     <EditText
@@ -59,8 +59,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone"
-        android:textColor="@color/black"
         android:text="Phone number"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,14 +72,54 @@
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Address"
         android:inputType="textPostalAddress"
+        android:text="Address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phonenumber_textview"
-        app:layout_constraintVertical_bias="0.167"
-        />
+        app:layout_constraintVertical_bias="0.167" />
+
+    <TextView
+        android:id="@+id/fullName"
+        android:layout_width="356dp"
+        android:layout_height="61dp"
+        app:layout_constraintBottom_toTopOf="@+id/email_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fullnametitle" />
+
+    <TextView
+        android:id="@+id/emailAddress"
+        android:layout_width="344dp"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/phonenumber_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_textview" />
+
+    <TextView
+        android:id="@+id/phonenumber"
+        android:layout_width="348dp"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/address_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonenumber_textview" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="359dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.903"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_textview"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (task.isSuccessful()) {
                         //go to home page for user
 
-                            Intent intent = new Intent(MainActivity.this, PersonalInformation.class);
+                            Intent intent = new Intent(MainActivity.this, UserHomePage.class);
                             startActivity(intent);
                         }
 

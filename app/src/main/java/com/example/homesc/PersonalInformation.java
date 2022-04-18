@@ -41,9 +41,10 @@ public class PersonalInformation extends AppCompatActivity {
         user=FirebaseAuth.getInstance().getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
         userID=user.getUid();
-        final TextView fullnameTextView=(TextView) findViewById(R.id.fullname);
+        final TextView fullnameTextView=(TextView) findViewById(R.id.fullName);
         final TextView phonenumberTextView=(TextView) findViewById(R.id.phonenumber);
-        final TextView  emailTextView=(TextView) findViewById(R.id.email);
+        final TextView  emailTextView=(TextView) findViewById(R.id.emailAddress);
+
        // final TextView numberOfPointsAvailableTextView=(TextView) findViewById(R.id.numberOfPointsAvailables);
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -54,9 +55,9 @@ public class PersonalInformation extends AppCompatActivity {
                     String fullName = userProfile.fullName;
                     String userEmail = userProfile.userEmail;
                     int numberOfAvailablePoints = userProfile.numberOfAvailablePoints;
-                    String phone =userProfile.userPhone;
+                    String userPhone =userProfile.userPhone;
                     fullnameTextView.setText(fullName);
-                    phonenumberTextView.setText(phone);
+                    phonenumberTextView.setText(userPhone);
                     emailTextView.setText(userEmail);
 
 

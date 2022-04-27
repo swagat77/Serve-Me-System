@@ -126,7 +126,7 @@ public class    UserHomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-       /* Search.setOnClickListener(new View.OnClickListener() {
+        Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserHomePage.this, Search.class));
@@ -134,7 +134,7 @@ public class    UserHomePage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Order.setOnClickListener(new View.OnClickListener() {
+     /*   Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserHomePage.this, Order.class));

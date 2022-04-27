@@ -10,9 +10,9 @@
         android:id="@+id/Settings"
         android:layout_width="403dp"
         android:layout_height="61dp"
+        android:backgroundTint="#89CFF0"
         android:text="Settings"
         android:textColor="@color/white"
-        android:backgroundTint="#89CFF0"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/toNotifications"
@@ -32,15 +32,15 @@
         android:textSize="19dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.378" />
 
     <Button
         android:id="@+id/toPersonalInformation"
-        android:layout_width="409dp"
-        android:layout_height="60dp"
+        android:layout_width="407dp"
+        android:layout_height="53dp"
         android:backgroundTint="#89CFF0"
         android:text="Personal Information"
         android:textColor="@color/white"
@@ -50,23 +50,23 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toNotifications"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <Button
-        android:id="@+id/toLogOut"
+        android:id="@+id/orderhistory"
         android:layout_width="421dp"
         android:layout_height="59dp"
         android:backgroundTint="#89CFF0"
-        android:text="Log Out"
+        android:text="Order History"
         android:textColor="@color/white"
-        android:textSize="25dp"
+        android:textSize="19dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toPersonalInformation"
-        app:layout_constraintVertical_bias="0.183" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <Button
         android:id="@+id/toFAQ"
@@ -80,8 +80,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toLogOut"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintTop_toBottomOf="@+id/orderhistory"
+        app:layout_constraintVertical_bias="0.184" />
+
+
+    <Button
+        android:id="@+id/toLogOut"
+        android:layout_width="408dp"
+        android:layout_height="65dp"
+        android:backgroundTint="#89CFF0"
+        android:text="Log Out"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toFAQ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.596" />
 
     <EditText
         android:id="@+id/justAccount"

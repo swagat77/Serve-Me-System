@@ -20,6 +20,7 @@ public class Account extends AppCompatActivity {
         Button PersonalInformation = findViewById(R.id.toPersonalInformation);
         Button Logout = findViewById(R.id.toLogOut);
         Button faq = findViewById(R.id.toFAQ);
+        Button orderhistory=findViewById(R.id.orderhistory);
         Button Settings = findViewById(R.id.Settings);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,13 +50,13 @@ public class Account extends AppCompatActivity {
         });
 
 
-        // Logout.setOnClickListener(new View.OnClickListener() {
-        //@Override
-        //  public void onClick(View view) {
-        // Intent intent = new Intent(Account.this, MainActivity.class);
-        //  startActivity(intent);
-        // }
-        //  });
+         orderhistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+        Intent intent = new Intent(Account.this, orderhistory.class);
+         startActivity(intent);
+        }
+         });
 
 
         faq.setOnClickListener(new View.OnClickListener() {

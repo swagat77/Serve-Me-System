@@ -18,44 +18,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class    UserHomePage extends AppCompatActivity {
-    private FirebaseUser user;
-    private DatabaseReference reference;
     private String userID;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
-
-       /* reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userProfile = snapshot.getValue(User.class);
-                if(userProfile != null)
-                {
-                    String fullName = userProfile.fullName;
-                    String userEmail = userProfile.userEmail;
-                    int numberOfAvailablePoints = userProfile.numberOfAvailablePoints;
-
-                }
-
-            }
-
-          //  @Override
-         //   public void onCancelled(@NonNull DatabaseError error) {
-             //  Toast.makeText(UserHomePage.this, "ERROR, Toast.LENGTH_SHORT").show();
-
-           // }
-        });*/
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userhomepage);
         Button Account = findViewById(R.id.LinktoAccount);
         Button Order = findViewById(R.id.LinktoOrderpage);
         Button Search = findViewById(R.id.LinktoSearchPage);
         Button home = findViewById(R.id.home);
+
         Button cleaning = findViewById(R.id.tocleaning);
         Button appliances = findViewById(R.id.toappliances);
         Button plumbing = findViewById(R.id.toplumbing);
@@ -65,63 +38,68 @@ public class    UserHomePage extends AppCompatActivity {
         Account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Account.class));
-                Intent intent = new Intent(UserHomePage.this, Account.class);
+                //startActivity(new Intent(UserHomePage.this, Account.class));
+                Intent intent = new Intent(UserHomePage.this, Account.class); //this line does nothing
                 startActivity(intent);
             }
         });
+        //atrocious, will make it a dynamic gridview after presentation
         appliances.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Appliances.class));
-                Intent intent = new Intent(UserHomePage.this, Appliances.class);
+                Intent intent = new Intent(UserHomePage.this, vendorList.class);
+                intent.putExtra("category","Appliances");
                 startActivity(intent);
             }
         });
         plumbing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Plumbing.class));
-                Intent intent = new Intent(UserHomePage.this, Plumbing.class);
+                Intent intent = new Intent(UserHomePage.this, vendorList.class);
+                intent.putExtra("category","Plumbing");
                 startActivity(intent);
             }
         });
         electrical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Electrical.class));
-                Intent intent = new Intent(UserHomePage.this,Electrical.class);
+                Intent intent = new Intent(UserHomePage.this,vendorList.class);
+                intent.putExtra("category","Electrical");
                 startActivity(intent);
             }
         });
         tutoring.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Tutoring.class));
-                Intent intent = new Intent(UserHomePage.this, Tutoring.class);
+                Intent intent = new Intent(UserHomePage.this, vendorList.class);
+                intent.putExtra("category","Tutoring");
                 startActivity(intent);
             }
         });
         cleaning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, cleaning.class));
-                Intent intent = new Intent(UserHomePage.this, cleaning.class);
+                Intent intent = new Intent(UserHomePage.this, vendorList.class);
+                intent.putExtra("category","Cleaning");
                 startActivity(intent);
             }
         });
         lawnmower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Lawnmower.class));
-                Intent intent = new Intent(UserHomePage.this, Lawnmower.class);
+                Intent intent = new Intent(UserHomePage.this, vendorList.class);
+                intent.putExtra("category","Lawnmower");
                 startActivity(intent);
             }
         });
         home.setOnClickListener(new View.OnClickListener() {
+            //why? why isnt this whole thing just a fragment view
+            //none of the other screens have buttons that would let them hit home
+            //this just adds more activities to the stack and sucks more memory than chrome
+            //finish(); would be way better
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, UserHomePage.class));
+                //startActivity(new Intent(UserHomePage.this, UserHomePage.class));
                 Intent intent = new Intent(UserHomePage.this, UserHomePage.class);
                 startActivity(intent);
             }

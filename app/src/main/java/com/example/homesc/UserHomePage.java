@@ -107,17 +107,15 @@ public class    UserHomePage extends AppCompatActivity {
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Search.class));
                 Intent intent = new Intent(UserHomePage.this, Search.class);
                 startActivity(intent);
             }
         });
-     /*   Order.setOnClickListener(new View.OnClickListener() {
+        Order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserHomePage.this, Order.class));
-                Intent intent = new Intent(UserHomePage.this, Order.class);
+                Intent intent = new Intent(UserHomePage.this, orderList.class);
                 startActivity(intent);
             }
-        });*/
+        });
     }}

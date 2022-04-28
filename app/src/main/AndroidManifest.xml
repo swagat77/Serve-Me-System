@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homesc">
         <activity
+            android:name=".orderChange"
+            android:exported="false" />
+        <activity
+            android:name=".orderDetails"
+            android:exported="false" />
+        <activity
+            android:name=".orderList"
+            android:exported="false" />
+        <activity
             android:name=".placeReq"
             android:exported="false" />
         <activity

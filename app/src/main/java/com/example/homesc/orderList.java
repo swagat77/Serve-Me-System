@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +46,7 @@ public class orderList extends AppCompatActivity {
 
         orderList=(ListView)findViewById(R.id.orderList);
 
-        userUID=getIntent().getStringExtra("userUID");
+        userUID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         Query ordQuery=database.child("Orders").orderByChild(userUID);
 
@@ -144,7 +145,6 @@ public class orderList extends AppCompatActivity {
                 else
                 {
                     Toast.makeText(orderList.this, "Error getting your orders. Please try again", Toast.LENGTH_LONG).show();
-                    finish();
                 }
             }
             @Override

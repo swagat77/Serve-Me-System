@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+
+    android:background="#E5E5E5"
+
+
+
+
+    android:paddingBottom="5dp"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
+    android:paddingTop="5dp">
+
+
+    <TextView
+
+        android:id="@+id/orderInfo"
+        android:layout_width="396dp"
+        android:layout_height="94dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/white"
+
+
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
+    <!--<Button
+        android:id="@+id/button1"
+        android:layout_width="149dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@drawable/buttonchangecolor"
+        android:text="Not Completed"
+        android:textColor="@color/white"
+
+        android:textSize="16dp" /> -->
+
+</LinearLayout>
+
+

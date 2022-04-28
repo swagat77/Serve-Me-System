@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Homesc">
         <activity
+            android:name=".vendoraccountpage"
+            android:exported="false" />
+        <activity
+            android:name=".openvendororders"
+            android:exported="false" />
+        <activity
             android:name=".RateOrder3"
             android:exported="false" />
         <activity

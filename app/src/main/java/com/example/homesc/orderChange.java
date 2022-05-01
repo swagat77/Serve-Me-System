@@ -97,10 +97,10 @@ public class orderChange extends AppCompatActivity {
         stateInput.setText(addrSplit[2]);
         zipcodeInput.setText(addrSplit[3]);
 
-        streetInput.addTextChangedListener(addressTextWatch);
+       /* streetInput.addTextChangedListener(addressTextWatch);
         cityInput.addTextChangedListener(addressTextWatch);
         stateInput.addTextChangedListener(addressTextWatch);
-        zipcodeInput.addTextChangedListener(addressTextWatch);
+        zipcodeInput.addTextChangedListener(addressTextWatch);*/
 
         vendNameLabel = (TextView) findViewById(R.id.vendNameText);
 
@@ -134,6 +134,13 @@ public class orderChange extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() { //confirm button
             @Override
             public void onClick(View v) {
+                street = streetInput.getText().toString().trim();
+                city = cityInput.getText().toString().trim();
+                state = stateInput.getText().toString().trim();
+                zipcode = zipcodeInput.getText().toString().trim();
+
+                address = street + ", " + city + ", " + state + ", " + zipcode;
+
                 if(!(street.isEmpty()&&city.isEmpty()&&state.isEmpty()&&zipcode.isEmpty()))
                 {
                     uplUpd();
@@ -155,24 +162,19 @@ public class orderChange extends AppCompatActivity {
         Toast.makeText(this, "Order updated", Toast.LENGTH_LONG).show();
         finish();
     }
-    private TextWatcher addressTextWatch = new TextWatcher() {
+    /*private TextWatcher addressTextWatch = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         }
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            street = streetInput.getText().toString().trim();
-            city = cityInput.getText().toString().trim();
-            state = stateInput.getText().toString().trim();
-            zipcode = zipcodeInput.getText().toString().trim();
 
-            address = street + ", " + city + ", " + state + ", " + zipcode;
         }
         @Override
         public void afterTextChanged(Editable editable) {
 
         }
-    };
+    };*/
     public void datePick() //date picker dialog
     {
         datePickerDiag = new DatePickerDialog(orderChange.this,

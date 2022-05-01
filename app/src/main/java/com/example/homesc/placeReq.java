@@ -34,8 +34,10 @@ public class placeReq extends AppCompatActivity {
     Button timeBtn;
     TextView time;
     TimePickerDialog timePickerDiag;
-    int vendOpen=8; //set to check from firebase or smth
-    int vendClose=20; //same as above
+    int vendOpen=8;
+    int vendClose=20;
+    //currently hard coded, needs to be changed to check vendor data in database when whoever
+    //was in charge of that adds the test data
 
     TextView vendName;
 
@@ -53,7 +55,6 @@ public class placeReq extends AppCompatActivity {
     String city;
     String state;
     String zipcode;
-
     String address;
 
 
@@ -63,7 +64,7 @@ public class placeReq extends AppCompatActivity {
         setContentView(R.layout.activity_place_req);
 
         getSupportActionBar().setTitle("Set Appointment"); //renames action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar, parent activity needs to be set in manifest
 
         streetInput=(EditText)findViewById(R.id.street);
         cityInput=(EditText)findViewById(R.id.city);
@@ -83,6 +84,7 @@ public class placeReq extends AppCompatActivity {
         date=(TextView) findViewById(R.id.dateDisp);
 
         date.setText((month+1) + "/" + (day+1) + "/" + year); //changes placeholder text showing tomorrow's date
+        //change time placeholder text to current time+one hour
 
         dateBtn.setOnClickListener(new View.OnClickListener(){ //select date button
             @Override

@@ -12,7 +12,6 @@ public class order{
     String address;
     String vendorName;
     String vendUID;
-    String user;
     String userUID;
     int status; //0 in progress, 1 finished, -1 cancelled
 
@@ -24,7 +23,6 @@ public class order{
         this.address=null;
         this.vendorName=null;
         this.vendUID=null;
-        this.user=null;
         this.userUID=null;
         this.status=0;
     }
@@ -50,10 +48,6 @@ public class order{
     {
         vendUID=vendorUID;
     }
-    public void setUser(String userName)
-    {
-        user=userName;
-    }
     public void setUserUID(String useUID)
     {
         userUID=useUID;
@@ -72,7 +66,6 @@ public class order{
         result.put("apptAddr",address);
         result.put("vendName",vendorName);
         result.put("vendUID",vendUID);
-        result.put("user",user);
         result.put("userUID",userUID);
         result.put("completed",status);
 

@@ -67,9 +67,9 @@ public class orderList extends AppCompatActivity {
 
                     for(DataSnapshot order:snapshot.getChildren())
                     {
-                        if(Integer.parseInt(order.child("completed").getValue().toString())==0)
+                        if(Integer.parseInt(order.child("completed").getValue().toString())==0)//gets pending orders
                         {
-                            if(userUID.equals(order.child("userUID").getValue().toString()))
+                            if(userUID.equals(order.child("userUID").getValue().toString()))//double checks to make sure it is the user's orders
                             {
                                 String sansDay[]=order.child("apptTime").getValue().toString().split("\\s"); //take away AM or PM
                                 String sansMin[]=sansDay[0].split(":"); //split hour and min
@@ -112,12 +112,12 @@ public class orderList extends AppCompatActivity {
                             }
                             else
                             {
-                                continue;//order is not pending
+                                continue;//order is not user's
                             }
                         }
                         else
                         {
-                            continue;
+                            continue;//order was completed or cancelled
                         }
                     }
 

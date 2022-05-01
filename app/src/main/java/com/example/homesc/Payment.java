@@ -21,6 +21,7 @@ public class Payment extends AppCompatActivity {
         EditText cvv=findViewById(R.id.spaceforcvv);
         EditText zipcode=findViewById(R.id.spaceforzipcode);
         Button cancel=findViewById(R.id.cancelbutton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

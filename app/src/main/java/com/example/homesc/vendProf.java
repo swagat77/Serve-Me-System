@@ -36,15 +36,40 @@ public class vendProf extends AppCompatActivity {
 
     String vendorName;
 
-    //add new field to order class for review and rating
-    //figure out why username not being uploaded
+    //todo all
+    //add progress bar for all activities that have to grab from database - low
+    //also try catches when grabbing from database - low
+    //change database references to grab necessary tables, not whole thing - med
+    //put code into functions - low
+
+    //todo placereq
+    //add new addr field for suites, parse correctly - high
+    //set time textview to current hour+ one or two except if its closing, then set to day after - med
+
+    //todo orderlist
+    //show addr in layout - low
+
+    //todo vendorList
+    //make custom adapter and layout - low
+    //add address and rating in layout - low
+    //show vendors in same city only - med
+
+    //todo vendProf
+    //grab dummy stars and review from database - high
+    //change layout, display hours with dummy data - med
+    //button to see reviews -> make new activity reviewList - high
+    //email vendor about order, notifications is swagats job - high
+    //move upLoad order to order.class - low
+
+    //todo reviewList - has requirements before continuing
+    //custom class with stars and review, maybe person's name - high
+    //custom adapter and layout - high
 
     order order=new order();
 
     DatabaseReference database=FirebaseDatabase.getInstance().getReference();
 
     private static final DecimalFormat dfZero=new DecimalFormat("0.00");
-    String fullName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +87,15 @@ public class vendProf extends AppCompatActivity {
         vendPhone=(TextView) findViewById(R.id.vendPhone);
         vendRating=(TextView) findViewById(R.id.vendRating);
         vendOrders=(TextView) findViewById(R.id.vendOrders);
+
+        //get stars from database
+        //average
+        //return
+        //return orders w/ completion 1
+
+        //add a button to see all reviews?
+        //custom adapter and review formatting
+        
 
         Query vendQuery=database.child("Vendors").orderByChild(vendUID);
 
@@ -108,34 +142,17 @@ public class vendProf extends AppCompatActivity {
         Intent payment=new Intent(this,Payment.class);
         startActivityForResult(payment,2);
     }
-    public void uploadOrder()
+    public void uploadOrder() //could this be moved to the order class?
     {
-        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Query userQuery = database.child("Users").orderByChild(uid);
-
-        userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    fullName=snapshot.child(uid).child("fullName").getValue().toString();
-                    order.setUser(fullName);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(vendProf.this, "Error retrieving user info", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        order.setUserUID(uid);
+        order.setUserUID(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         order.setVendorName(vendorName);
         order.setVendUID(vendUID);
         order.setStatus(0);
 
         String key=database.child("Orders").push().getKey();
-        Map<String, Object> orderDetails=order.toMap();
-        Map<String, Object> childUpdate=new HashMap<>();
+        Map<String,Object> orderDetails=order.toMap();
+        Map<String,Object> childUpdate=new HashMap<>();
         childUpdate.put("/Orders/"+key,orderDetails);
 
         database.updateChildren(childUpdate);
@@ -171,10 +188,9 @@ public class vendProf extends AppCompatActivity {
                 switch(resCode)
                 {
                     case RESULT_OK:
-                        /*float tempPrice=(float)data.getFloatExtra("payAmount",0f);
-                        String priceStr;
-                        priceStr=dfZero.format(tempPrice);*/
+
                         order.setPrice(Float.parseFloat("50.25"));
+                        //hardcoded, needs to check from database when whoever in charge adds test data
 
                         uploadOrder();
                         break;

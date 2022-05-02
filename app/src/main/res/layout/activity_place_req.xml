@@ -91,9 +91,10 @@
         app:layout_constraintBottom_toTopOf="@+id/dateDisp"
         app:layout_constraintEnd_toStartOf="@+id/zipcode"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/zipcode"
@@ -104,12 +105,12 @@
         android:imeOptions="actionDone"
         android:inputType="number"
         android:maxLength="5"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/dateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/state"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.519" />
+        app:layout_constraintTop_toBottomOf="@id/city"
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
         android:id="@+id/dateButton"
@@ -121,10 +122,12 @@
         android:text="Select Date"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/timeButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@id/dateDisp"
+        app:layout_constraintTop_toBottomOf="@id/zipcode"
+        app:layout_constraintVertical_bias="0.614" />
 
     <Button
         android:id="@+id/timeButton"
@@ -135,12 +138,12 @@
         android:text="Select Time"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/confirmButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.877"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toEndOf="@id/timeDisp"
+        app:layout_constraintTop_toBottomOf="@id/dateButton"
+        app:layout_constraintVertical_bias="0.754" />
 
     <TextView
         android:id="@+id/dateDisp"
@@ -152,6 +155,7 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/timeDisp"
+        app:layout_constraintEnd_toStartOf="@id/dateButton"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/state"
@@ -166,8 +170,9 @@
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/confirmButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintEnd_toStartOf="@id/timeButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateDisp"
         app:layout_constraintVertical_bias="0.754" />

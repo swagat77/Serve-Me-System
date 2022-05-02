@@ -97,6 +97,9 @@ public class placeReq extends AppCompatActivity {
         dateBtn=(Button)findViewById(R.id.dateButton);
         date=(TextView) findViewById(R.id.dateDisp);
 
+        timeBtn=(Button)findViewById(R.id.timeButton);
+        time=(TextView) findViewById(R.id.timeDisp);
+
         //ArrayAdapter state
 
         /*stateInput.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,12 +109,27 @@ public class placeReq extends AppCompatActivity {
             }
         });*/
 
-        date.setText((month+1) + "/" + (day+1) + "/" + year); //changes placeholder text showing tomorrow's date
-        //change time placeholder text to current time+one hour
 
-        dayOrNight=hour<12?"AM":"PM"; //checks whether appointment is am or pm
-        longHour=hour<13?String.valueOf(hour+1):String.valueOf(hour-11); //formats hour to 12 hour format, an hour ahead
-        longMin=min<10?"0"+min: String.valueOf(min); //adds an extra 0 to the front if only single digit
+        //change time placeholder text to current time+one hour
+        if((hour+2)<vendOpen) //checks if current hour+2 is within vendor hours. if before open, sets to when vendor opens
+        {
+            hour=hour+(vendOpen-hour);
+        }
+        else if((hour+2)>vendClose)//if after close, sets to morning of day after tomorrow
+        {
+            day=day+1;
+            hour=8;
+        }
+        else
+        {
+            hour = hour + 2;
+        }
+
+        date.setText((month+1) + "/" + (day+1) + "/" + year); //changes placeholder text showing tomorrow's date
+
+        dayOrNight=hour<12?"AM":"PM"; //checks whether current time is am or pm
+        longHour=hour<13?String.valueOf(hour):String.valueOf(hour-12); //formats hour to 12 hour format
+        longMin="00"; //rounds to nearest hour
 
         time.setText(longHour + ":" + longMin + " " + dayOrNight);
 
@@ -122,9 +140,6 @@ public class placeReq extends AppCompatActivity {
                 dateBtn.setText("Change Date");
             }
         });
-
-        timeBtn=(Button)findViewById(R.id.timeButton);
-        time=(TextView) findViewById(R.id.timeDisp);
 
         timeBtn.setOnClickListener(new View.OnClickListener(){ //select time button
             @Override
@@ -156,10 +171,20 @@ public class placeReq extends AppCompatActivity {
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
         }
-
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            street= addrLine1Input.getText().toString().trim()+ addrLine2Input.getText().toString().trim();
+
+            String addrLine1=addrLine1Input.getText().toString().trim();
+            String addrLine2=addrLine2Input.getText().toString().trim();
+
+            if(addrLine2.isEmpty())
+            {
+                street=addrLine1;
+            }
+            else
+            {
+                street=addrLine1+", "+addrLine2;
+            }
             city=cityInput.getText().toString().trim();
             state=stateInput.getText().toString().trim();
             //get spinner pos
@@ -168,7 +193,6 @@ public class placeReq extends AppCompatActivity {
             address=street+", "+city+", "+state+", "+zipcode;
             confirmBtn.setEnabled(!(street.isEmpty()&&city.isEmpty()&&state.isEmpty()&&zipcode.isEmpty()));
         }
-
         @Override
         public void afterTextChanged(Editable editable) {
 

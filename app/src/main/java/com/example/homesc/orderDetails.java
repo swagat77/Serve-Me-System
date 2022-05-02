@@ -151,14 +151,18 @@ public class orderDetails extends AppCompatActivity {
     {
         super.onActivityResult(reqCode, resCode, data);
         switch(reqCode) {
-            case 1: //change order
-                if(resCode==RESULT_OK)
+            case 1: //change order details
+                switch(resCode)
                 {
-                    setResult(RESULT_OK);
-                }
-                else
-                {
-                    setResult(RESULT_CANCELED);
+                    case RESULT_OK:
+                        setResult(RESULT_OK);
+                        break;
+                    case 2:
+                        setResult(2);
+                        break;
+                    default:
+                        setResult(RESULT_CANCELED);
+                        break;
                 }
                 break;
             default:

@@ -48,10 +48,6 @@ public class orderChange extends AppCompatActivity {
     int month = calendar.get(Calendar.MONTH); //sets month to current
     int day = calendar.get(Calendar.DAY_OF_MONTH); //sets day to current
 
-    int AMPM=calendar.get(Calendar.AM_PM);
-    int hour=AMPM==1?calendar.get(Calendar.HOUR)-12:calendar.get(Calendar.HOUR);
-    int min=calendar.get(Calendar.MINUTE);
-
     String dayOrNight;
     String longHour;
     String longMin;
@@ -91,25 +87,25 @@ public class orderChange extends AppCompatActivity {
         String addrSplit[]=apptAddr.split(", ");
 
         //tokenize address
-        if(addrSplit.length==4)
+        switch (addrSplit.length)
         {
-            addrLine1Input.setText(addrSplit[0]);
-            cityInput.setText(addrSplit[1]);
-            stateInput.setText(addrSplit[2]);
-            zipcodeInput.setText(addrSplit[3]);
-        }
-        else if(addrSplit.length==5)
-        {
-            addrLine1Input.setText(addrSplit[0]);
-            addrLine2Input.setText(addrSplit[1]);
-            cityInput.setText(addrSplit[2]);
-            stateInput.setText(addrSplit[3]);
-            zipcodeInput.setText(addrSplit[4]);
-        }
-        else
-        {
-            Toast.makeText(this, "Error retrieving address info", Toast.LENGTH_SHORT).show();
-            finish();
+            case 4:
+                addrLine1Input.setText(addrSplit[0]);
+                cityInput.setText(addrSplit[1]);
+                stateInput.setText(addrSplit[2]);
+                zipcodeInput.setText(addrSplit[3]);
+                break;
+            case 5:
+                addrLine1Input.setText(addrSplit[0]);
+                addrLine2Input.setText(addrSplit[1]);
+                cityInput.setText(addrSplit[2]);
+                stateInput.setText(addrSplit[3]);
+                zipcodeInput.setText(addrSplit[4]);
+                break;
+            default:
+                Toast.makeText(this, "Error retrieving address info", Toast.LENGTH_SHORT).show();
+                finish();
+                break;
         }
 
         vendNameLabel = (TextView) findViewById(R.id.vendNameText);
@@ -119,13 +115,11 @@ public class orderChange extends AppCompatActivity {
         dateBtn = (Button) findViewById(R.id.dateButton);
         date = (TextView) findViewById(R.id.dateDisp);
 
+        timeBtn=(Button)findViewById(R.id.timeButton);
+        time=(TextView) findViewById(R.id.timeDisp);
+
         date.setText(apptDate); //changes text to apptDate
-
-        dayOrNight=hour<12?"AM":"PM"; //checks whether appointment is am or pm
-        longHour=hour<13?String.valueOf(hour+1):String.valueOf(hour-11); //formats hour to 12 hour format, an hour ahead
-        longMin=min<10?"0"+min: String.valueOf(min); //adds an extra 0 to the front if only single digit
-
-        time.setText(longHour + ":" + longMin + " " + dayOrNight);
+        time.setText(apptTime);
 
         dateBtn.setOnClickListener(new View.OnClickListener() { //select date button
             @Override
@@ -134,9 +128,6 @@ public class orderChange extends AppCompatActivity {
                 dateBtn.setText("Change Date");
             }
         });
-
-        timeBtn = (Button) findViewById(R.id.timeButton);
-        time = (TextView) findViewById(R.id.timeDisp);
 
         timeBtn.setOnClickListener(new View.OnClickListener() { //select time button
             @Override
@@ -214,5 +205,10 @@ public class orderChange extends AppCompatActivity {
                 }, 0, 0, false);
 
         timePickerDiag.show();
+    }
+    @Override
+    public void onBackPressed() {
+        setResult(2);
+        super.onBackPressed();
     }
 }

@@ -20,11 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class vendProf extends AppCompatActivity {
 
@@ -138,7 +135,13 @@ public class vendProf extends AppCompatActivity {
                             ordersComp++;
                             ratings.add(Float.parseFloat(order.child("rating").getValue().toString()));
                         }
+                        else
+                        {
+                            continue;
+                        }
                     }
+
+                    vendOrders.setText("Orders Completed: "+ ordersComp);
 
                     if(!ratings.isEmpty())
                     {
@@ -147,10 +150,12 @@ public class vendProf extends AppCompatActivity {
                             avgRating=avgRating+(float)stars;
                         }
                         avgRating=avgRating/ratings.size();
+                        vendStars.setRating(avgRating);
                     }
-
-                    vendStars.setRating(avgRating);
-                    vendOrders.setText(ordersComp);
+                    else if(ratings.isEmpty())
+                    {
+                        vendStars.setRating(0);
+                    }
                 }
                 else
                 {
@@ -164,13 +169,27 @@ public class vendProf extends AppCompatActivity {
             }
         });
 
-        Button button = (Button) findViewById(R.id.button);//schedule button
-        button.setOnClickListener(new View.OnClickListener(){
+        Button revButt=(Button)findViewById(R.id.reviewButt);//review button
+        revButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openReviewList();
+            }
+        });
+
+        Button confButt = (Button) findViewById(R.id.confirmButt);//schedule button
+        confButt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 openPlaceReq();
             }
         });
+    }
+    public void openReviewList()
+    {
+        /*Intent review=new Intent(this, reviewList.class);
+        review.putExtra("vendUID",vendUID);
+        startActivity(review);*/
     }
     public void openPlaceReq()
     {

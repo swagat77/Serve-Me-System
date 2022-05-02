@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/vendNameText"
         android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:gravity="center"
         android:text="vendor_name"
         android:textAlignment="center"
@@ -76,7 +76,7 @@
         android:text="Phone: Unavailable"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/vendRating"
+        app:layout_constraintBottom_toTopOf="@+id/vendOrders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,30 +98,48 @@
 
     <TextView
         android:id="@+id/vendRating"
-        android:layout_width="175dp"
+        android:layout_width="100dp"
         android:layout_height="75dp"
         android:gravity="center"
-        android:text="Rating: "
+        android:text="Rating:"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/vendOrders"
+        app:layout_constraintBottom_toTopOf="@+id/reviewButt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/vendOrders" />
 
     <RatingBar
         android:id="@+id/ratingStars"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="175dp"
-        android:layout_height="75dp"
+        android:layout_height="40dp"
         android:isIndicator="true"
         android:numStars="5"
-        android:foregroundGravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/vendOrders"
+        app:layout_constraintBottom_toTopOf="@+id/reviewButt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="0.754"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/vendOrders"
+        app:layout_constraintVertical_bias="0.5
+" />
+
+    <Button
+        android:id="@+id/reviewButt"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/purple_200"
+        android:gravity="center"
+        android:text="See all Reviews"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/confirmButt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendRating"
+        app:layout_constraintVertical_bias="0.973" />
 
     <TextView
         android:id="@+id/vendOrders"
@@ -131,16 +149,16 @@
         android:text="Orders Completed: Unavailable"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/vendRating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendRating" />
+        app:layout_constraintTop_toBottomOf="@+id/vendPhone" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirmButt"
         android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:backgroundTint="@color/purple_200"
         android:gravity="center"
         android:text="Schedule"
@@ -150,7 +168,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendOrders"
+        app:layout_constraintTop_toBottomOf="@+id/reviewButt"
         app:layout_constraintVertical_bias="0.973" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

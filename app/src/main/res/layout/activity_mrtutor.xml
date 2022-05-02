@@ -89,14 +89,14 @@ tools:context=".mrtutor">
     android:text="Orders Completed: 5"
     android:textAlignment="center"
     android:textSize="20sp"
-    app:layout_constraintBottom_toTopOf="@+id/button"
+    app:layout_constraintBottom_toTopOf="@+id/confirmButt"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/vendRating" />
 
 <Button
-    android:id="@+id/button"
+    android:id="@+id/confirmButt"
     android:layout_width="350dp"
     android:layout_height="120dp"
 

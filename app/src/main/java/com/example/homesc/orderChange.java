@@ -1,13 +1,10 @@
 package com.example.homesc;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -16,17 +13,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class orderChange extends AppCompatActivity {
 
@@ -34,7 +24,8 @@ public class orderChange extends AppCompatActivity {
     String vendName;
     String apptAddr;
 
-    EditText streetInput;
+    EditText addrLine1Input;
+    EditText addrLine2Input;
     EditText cityInput;
     EditText stateInput;
     EditText zipcodeInput;
@@ -46,8 +37,8 @@ public class orderChange extends AppCompatActivity {
     Button timeBtn;
     TextView time;
     TimePickerDialog timePickerDiag;
-    int vendOpen = 8; //set to check from firebase or smth
-    int vendClose = 20; //same as above
+    int vendOpen = 8;
+    int vendClose = 20;
 
     TextView vendNameLabel;
 
@@ -78,7 +69,8 @@ public class orderChange extends AppCompatActivity {
         getSupportActionBar().setTitle("Edit Appointment"); //renames action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
 
-        streetInput = (EditText) findViewById(R.id.street);
+        addrLine1Input = (EditText) findViewById(R.id.addrLine1);
+        addrLine2Input=(EditText)findViewById(R.id.addrLine2);
         cityInput = (EditText) findViewById(R.id.city);
         stateInput = (EditText) findViewById(R.id.state);
         zipcodeInput = (EditText) findViewById(R.id.zipcode);
@@ -92,15 +84,26 @@ public class orderChange extends AppCompatActivity {
         String addrSplit[]=apptAddr.split(", ");
 
         //tokenize address
-        streetInput.setText(addrSplit[0]);
-        cityInput.setText(addrSplit[1]);
-        stateInput.setText(addrSplit[2]);
-        zipcodeInput.setText(addrSplit[3]);
-
-       /* streetInput.addTextChangedListener(addressTextWatch);
-        cityInput.addTextChangedListener(addressTextWatch);
-        stateInput.addTextChangedListener(addressTextWatch);
-        zipcodeInput.addTextChangedListener(addressTextWatch);*/
+        if(addrSplit.length==4)
+        {
+            addrLine1Input.setText(addrSplit[0]);
+            cityInput.setText(addrSplit[1]);
+            stateInput.setText(addrSplit[2]);
+            zipcodeInput.setText(addrSplit[3]);
+        }
+        else if(addrSplit.length==5)
+        {
+            addrLine1Input.setText(addrSplit[0]);
+            addrLine2Input.setText(addrSplit[1]);
+            cityInput.setText(addrSplit[2]);
+            stateInput.setText(addrSplit[3]);
+            zipcodeInput.setText(addrSplit[4]);
+        }
+        else
+        {
+            Toast.makeText(this, "Error retrieving address info", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         vendNameLabel = (TextView) findViewById(R.id.vendNameText);
 
@@ -134,7 +137,7 @@ public class orderChange extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() { //confirm button
             @Override
             public void onClick(View v) {
-                street = streetInput.getText().toString().trim();
+                street = addrLine1Input.getText().toString().trim();
                 city = cityInput.getText().toString().trim();
                 state = stateInput.getText().toString().trim();
                 zipcode = zipcodeInput.getText().toString().trim();
@@ -162,19 +165,7 @@ public class orderChange extends AppCompatActivity {
         Toast.makeText(this, "Order updated", Toast.LENGTH_LONG).show();
         finish();
     }
-    /*private TextWatcher addressTextWatch = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        }
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        }
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };*/
     public void datePick() //date picker dialog
     {
         datePickerDiag = new DatePickerDialog(orderChange.this,

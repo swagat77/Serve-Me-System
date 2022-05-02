@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".orderChange">
+    tools:context=".placeReq">
 
     <TextView
         android:id="@+id/vendNameText"
@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/street"
+        app:layout_constraintBottom_toTopOf="@+id/addrLine1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,32 +24,60 @@
 
 
     <EditText
-        android:id="@+id/street"
+        android:id="@+id/addrLine1"
         android:layout_width="350dp"
         android:layout_height="75dp"
-        android:hint="Street"
+        android:hint="Address Line 1"
+        android:imeOptions="actionNext"
         android:inputType="text"
         android:singleLine="true"
-        android:imeOptions="actionNext"
-        app:layout_constraintBottom_toTopOf="@+id/city"
+        app:layout_constraintBottom_toTopOf="@+id/addrLine2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vendNameText" />
 
     <EditText
+        android:id="@+id/addrLine2"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:hint="Address Line 2"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/city"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addrLine1" />
+
+    <EditText
         android:id="@+id/city"
         android:layout_width="350dp"
         android:layout_height="75dp"
         android:hint="City"
+        android:imeOptions="actionNext"
         android:inputType="text"
         android:singleLine="true"
-        android:imeOptions="actionNext"
         app:layout_constraintBottom_toTopOf="@+id/state"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/street" />
+        app:layout_constraintTop_toBottomOf="@+id/addrLine1" />
+
+    <!--<Spinner
+        android:id="@+id/state"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:prompt="State"
+        android:entries="@array/statesArr"
+        app:layout_constraintBottom_toTopOf="@+id/dateDisp"
+        app:layout_constraintEnd_toStartOf="@+id/zipcode"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/city"
+        app:layout_constraintVertical_bias="0.469" />-->
 
     <EditText
         android:id="@+id/state"
@@ -57,9 +85,9 @@
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
         android:hint="State"
+        android:imeOptions="actionNext"
         android:inputType="text"
         android:singleLine="true"
-        android:imeOptions="actionNext"
         app:layout_constraintBottom_toTopOf="@+id/dateDisp"
         app:layout_constraintEnd_toStartOf="@+id/zipcode"
         app:layout_constraintHorizontal_bias="0.5"
@@ -81,7 +109,38 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/state"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.519" />
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/purple_200"
+        android:gravity="center"
+        android:text="Select Date"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.66" />
+
+    <Button
+        android:id="@+id/timeButton"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/purple_200"
+        android:gravity="center"
+        android:text="Select Time"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.877"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/dateDisp"
@@ -97,21 +156,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/state"
         app:layout_constraintVertical_bias="0.614" />
-
-    <Button
-        android:id="@+id/dateButton"
-        android:layout_width="175dp"
-        android:layout_height="75dp"
-        android:layout_marginEnd="28dp"
-        android:gravity="center"
-        android:text="Select Date"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
 
     <TextView
         android:id="@+id/timeDisp"
@@ -129,30 +173,15 @@
         app:layout_constraintVertical_bias="0.754" />
 
     <Button
-        android:id="@+id/timeButton"
-        android:layout_width="175dp"
-        android:layout_height="75dp"
-        android:gravity="center"
-        android:text="Select Time"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.765" />
-
-    <Button
         android:id="@+id/confirmButton"
         android:layout_width="350dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
+        android:backgroundTint="@color/purple_200"
+        android:enabled="false"
         android:gravity="center"
-        android:text="save Changes"
+        android:text="Confirm Request"
         android:textAlignment="center"
         android:textSize="24sp"
-        android:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

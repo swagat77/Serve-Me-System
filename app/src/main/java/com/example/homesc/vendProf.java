@@ -43,8 +43,7 @@ public class vendProf extends AppCompatActivity {
     //put code into functions - low
 
     //todo placereq
-    //add new addr field for suites, parse correctly - high
-    //set time textview to current hour+ one or two except if its closing, then set to day after - med
+    //spinner for states - low
 
     //todo orderlist
     //show addr in layout - low

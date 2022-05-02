@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="100">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="50">
 
     <TextView
         android:textAlignment="center"
@@ -11,13 +16,8 @@
         android:text="vendName"
         android:id="@+id/listVendName"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="50"/>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="50">
+        android:layout_height="25dp" />
+
         <TextView
             android:textAlignment="center"
             android:layout_gravity="center"
@@ -34,6 +34,25 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"/>
 
-    </LinearLayout>
+
+</LinearLayout>
+
+    <TextView
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="addr"
+        android:id="@+id/apptAddr"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_weight="50"/>
+
+    <!--<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="50">
+
+
+    </LinearLayout>-->
 
 </LinearLayout>

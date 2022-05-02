@@ -113,11 +113,12 @@ public class orderList extends AppCompatActivity {
                                     continue;//unfulfilled in the past
                                 }
                                 String orderUIDTemp=order.getKey();
+                                String apptAddrTemp=order.child("apptAddr").getValue().toString();
                                 String vendNameTemp=order.child("vendName").getValue().toString();
                                 String apptDateTemp=order.child("apptDate").getValue().toString();
                                 String apptTimeTemp=order.child("apptTime").getValue().toString();
 
-                                com.example.homesc.orderItem temp=new orderItem(orderUIDTemp,vendNameTemp,apptDateTemp,apptTimeTemp);
+                                com.example.homesc.orderItem temp=new orderItem(orderUIDTemp,apptAddrTemp,vendNameTemp,apptDateTemp,apptTimeTemp);
                                 listOfOrders.add(temp);
                             }
                             else
@@ -180,6 +181,7 @@ public class orderList extends AppCompatActivity {
                         Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_LONG).show();
                         break;
                 }
+                break;
             default:
                 Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_LONG).show();
                 break;

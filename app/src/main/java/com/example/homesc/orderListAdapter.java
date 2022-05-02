@@ -32,10 +32,12 @@ public class orderListAdapter extends ArrayAdapter<orderItem>{
         orderItem order= (com.example.homesc.orderItem) getItem(pos);
 
         TextView vendorName=(TextView) convView.findViewById(R.id.listVendName);
+        TextView addr=(TextView)convView.findViewById(R.id.apptAddr);
         TextView date=(TextView) convView.findViewById(R.id.listApptDate);
         TextView time=(TextView) convView.findViewById(R.id.listApptTime);
 
         vendorName.setText(order.getVendName());
+        addr.setText(order.getApptAddr());
         date.setText(order.getApptDate());
         time.setText(order.getApptTime());
 

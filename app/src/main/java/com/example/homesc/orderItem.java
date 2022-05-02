@@ -2,13 +2,15 @@ package com.example.homesc;
 
 public class orderItem {
     private String orderUID;
+    private String apptAddr;
     private String vendName;
     private String apptDate;
     private String apptTime;
 
-    public orderItem(String orderUID, String vendName, String apptDate, String apptTime)
+    public orderItem(String orderUID, String apptAddr, String vendName, String apptDate, String apptTime)
     {
         this.orderUID=orderUID;
+        this.apptAddr=apptAddr;
         this.vendName=vendName;
         this.apptDate=apptDate;
         this.apptTime=apptTime;
@@ -16,6 +18,10 @@ public class orderItem {
     public void setOrderUID(String orderUID)
     {
         this.orderUID=orderUID;
+    }
+    public void setApptAddr(String apptAddr)
+    {
+        this.apptAddr=apptAddr;
     }
     public void setVendName(String vendName)
     {
@@ -33,6 +39,10 @@ public class orderItem {
     public String getOrderUID()
     {
         return orderUID;
+    }
+    public String getApptAddr()
+    {
+        return apptAddr;
     }
     public String getVendName()
     {

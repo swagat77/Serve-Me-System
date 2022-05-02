@@ -50,9 +50,6 @@ public class vendProf extends AppCompatActivity {
     //todo placereq
     //spinner for states - low
 
-    //todo orderlist
-    //show addr in layout - low
-
     //todo vendorList
     //make custom adapter and layout - low
     //add address and rating in layout - low

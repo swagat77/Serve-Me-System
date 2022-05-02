@@ -31,6 +31,7 @@ public class vendProf extends AppCompatActivity {
     String vendUID;
 
     TextView vendName;
+    TextView vendHours;
     TextView vendAddr;
     TextView vendMail;
     TextView vendPhone;
@@ -81,20 +82,13 @@ public class vendProf extends AppCompatActivity {
         vendUID=getIntent().getStringExtra("vendUID");
 
         vendName=(TextView) findViewById(R.id.vendNameText);
+        vendHours=(TextView)findViewById(R.id.hours);
         vendAddr=(TextView) findViewById(R.id.vendAddr);
         vendMail=(TextView) findViewById(R.id.vendMail);
         vendPhone=(TextView) findViewById(R.id.vendPhone);
         vendRating=(TextView) findViewById(R.id.vendRating);
         vendStars=(RatingBar)findViewById(R.id.ratingStars);
         vendOrders=(TextView) findViewById(R.id.vendOrders);
-
-        //get stars from database
-        //average
-        //return
-        //return orders w/ completion 1
-
-        //add a button to see all reviews?
-        //custom adapter and review formatting
 
         Query vendQuery=database.child("Vendors").orderByChild(vendUID);
 
@@ -104,7 +98,18 @@ public class vendProf extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     vendorName=dataSnapshot.child(vendUID).child("companyName").getValue().toString();
 
+                    /*int vendOpen=dataSnapshot.child(vendUID).child();
+                    int vendClose=dataSnapshot.child(vendUID).child();
+                    //currently hard coded, needs to be changed to check vendor data in database when whoever
+                    //was in charge of that adds the test data
+
+                    //needs to be formatted consistently with app
+                    //will it be formatted as a string (08:00 AM - 08:00 PM) or as two ints/strings?
+                    //if latter, needs to be reformatted. grab from placeReq
+                     */
+
                     vendName.setText(vendorName);
+                    vendHours.setText("Hours: "+"08:00 AM - 08:00 PM");
                     vendAddr.setText("Address: "+dataSnapshot.child(vendUID).child("address").getValue().toString());
                     vendMail.setText("Email: "+dataSnapshot.child(vendUID).child("companyEmail").getValue().toString());
                     vendPhone.setText("Phone: "+dataSnapshot.child(vendUID).child("companyPhone").getValue().toString());

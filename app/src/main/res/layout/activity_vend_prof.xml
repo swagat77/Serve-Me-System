@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/vendMail"
+        app:layout_constraintBottom_toTopOf="@+id/hours"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,20 +24,18 @@
         app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
-        android:id="@+id/vendNameText"
+        android:id="@+id/hours"
         android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:gravity="center"
-        android:text="vendor_name"
+        android:text="Hours:"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/vendMail"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/vendAddr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
+        app:layout_constraintTop_toBottomOf="@id/vendNameText"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
@@ -52,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vendNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/hours" />
 
 
     <TextView

@@ -40,24 +40,12 @@ public class vendProf extends AppCompatActivity {
 
     //todo all
     //add progress bar for all activities that have to grab from database - low
-    //also try catches when grabbing from database - low
-    //change database references to grab necessary tables, not whole thing - med
-    //put code into functions - low
-
-    //todo placereq
-    //spinner for states - low
+    //back arrows - high
 
     //todo vendorList
     //make custom adapter and layout - low
     //add address and rating in layout - low
     //show vendors in same city only - med
-
-    //todo vendProf
-    //button to see reviews -> make new activity reviewList - high
-
-    //todo reviewList - has requirements before continuing
-    //custom class with stars and review, maybe person's name - high
-    //custom adapter and layout - high
 
     order order=new order();
 
@@ -90,7 +78,8 @@ public class vendProf extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     vendorName=dataSnapshot.child(vendUID).child("companyName").getValue().toString();
 
-                    /*int vendOpen=dataSnapshot.child(vendUID).child();
+                    /*
+                    int vendOpen=dataSnapshot.child(vendUID).child();
                     int vendClose=dataSnapshot.child(vendUID).child();
                     //currently hard coded, needs to be changed to check vendor data in database when whoever
                     //was in charge of that adds the test data
@@ -133,11 +122,16 @@ public class vendProf extends AppCompatActivity {
                         if(Integer.parseInt(order.child("completed").getValue().toString())==1)
                         {
                             ordersComp++;
-                            ratings.add(Float.parseFloat(order.child("rating").getValue().toString()));
+
+                            if(Float.parseFloat(order.child("rating").getValue().toString())>=0)
+                            {
+                                ratings.add(Float.parseFloat(order.child("rating").getValue().toString()));
+                            }
+
                         }
                         else
                         {
-                            continue;
+                            continue;//order cancelled or not fulfilled
                         }
                     }
 
@@ -187,9 +181,9 @@ public class vendProf extends AppCompatActivity {
     }
     public void openReviewList()
     {
-        /*Intent review=new Intent(this, reviewList.class);
+        Intent review=new Intent(this, reviewList.class);
         review.putExtra("vendUID",vendUID);
-        startActivity(review);*/
+        startActivity(review);
     }
     public void openPlaceReq()
     {

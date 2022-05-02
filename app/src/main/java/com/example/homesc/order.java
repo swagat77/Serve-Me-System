@@ -31,7 +31,7 @@ public class order{
         this.vendorName=null;
         this.vendUID=null;
         this.userUID=null;
-        this.rating=0;
+        this.rating=(-1); //used for when order is completed but not rated
         this.review="";
         this.status=0;
     }

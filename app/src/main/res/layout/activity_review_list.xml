@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".orderList">
+    tools:context=".reviewList">
 
     <TextView
         android:id="@+id/reviewListLabel"
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:gravity="center"
-        android:text="Choose an Order \nto Revise or Cancel"
+        android:text="All Reviews For vendName"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/disclaimer"
+        app:layout_constraintBottom_toTopOf="@+id/reviewList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,22 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/disclaimer"
+        app:layout_constraintTop_toBottomOf="@+id/reviewListLabel"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/disclaimer"
-        android:layout_width="323dp"
-        android:layout_height="31dp"
-        android:gravity="center"
-        android:text="Orders within 24 hours cannot be changed or cancelled and will not show up below"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/reviewList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reviewListLabel"
-        app:layout_constraintVertical_bias="0.19" />
 </androidx.constraintlayout.widget.ConstraintLayout>

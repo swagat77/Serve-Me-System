@@ -44,7 +44,7 @@ public class orderList extends AppCompatActivity {
 
         tempTV=(TextView)findViewById(R.id.disclaimer);
 
-        orderList=(ListView)findViewById(R.id.orderList);
+        orderList=(ListView)findViewById(R.id.reviewList);
 
         userUID= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -112,13 +112,11 @@ public class orderList extends AppCompatActivity {
                                 {
                                     continue;//unfulfilled in the past
                                 }
-                                String orderUIDTemp=order.getKey();
-                                String apptAddrTemp=order.child("apptAddr").getValue().toString();
-                                String vendNameTemp=order.child("vendName").getValue().toString();
-                                String apptDateTemp=order.child("apptDate").getValue().toString();
-                                String apptTimeTemp=order.child("apptTime").getValue().toString();
 
-                                com.example.homesc.orderItem temp=new orderItem(orderUIDTemp,apptAddrTemp,vendNameTemp,apptDateTemp,apptTimeTemp);
+                                orderItem temp=new orderItem(order.getKey(),order.child("apptAddr").getValue().toString(), //address
+                                                                    order.child("vendName").getValue().toString(), //vendor
+                                                                    order.child("apptDate").getValue().toString(), //date
+                                                                    order.child("apptTime").getValue().toString()); //time
                                 listOfOrders.add(temp);
                             }
                             else
@@ -132,7 +130,7 @@ public class orderList extends AppCompatActivity {
                         }
                     }
 
-                    orderListAdapter adapter=new orderListAdapter(orderList.this,R.layout.adapter_view_layout,listOfOrders);
+                    orderListAdapter adapter=new orderListAdapter(orderList.this,R.layout.adapter_view_layout_order_list,listOfOrders);
                     orderList.setAdapter(adapter);
 
                     orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

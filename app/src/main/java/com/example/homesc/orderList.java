@@ -77,10 +77,12 @@ public class orderList extends AppCompatActivity {
                                 int newHour=(sansDay[1].equals("PM")&&(hourTemp<13))?(hourTemp+12):hourTemp; //add 12 to hour is PM
 
                                 String dateTemp=order.child("apptDate").getValue().toString();
-                                String dateSplit[]=dateTemp.split("/");//0 month, 1 day, 2 year
-                                if(Integer.parseInt(dateSplit[2])==year||year>=Integer.parseInt(dateSplit[2]))//same year or previous year
+                                String dateSplit[]=dateTemp.split("/");//0 - month, 1 - day, 2 - year
+
+                                //checks date and time, skips order if in the past or within 24 hours in the future
+                                if(Integer.parseInt(dateSplit[2])==year) //same year
                                 {
-                                    if(Integer.parseInt(dateSplit[0])==month||month>=Integer.parseInt(dateSplit[0]))//same month or previous month
+                                    if(Integer.parseInt(dateSplit[0])==month)//same month
                                     {
                                         if (Integer.parseInt(dateSplit[1])==day)//same day
                                         {
@@ -101,6 +103,14 @@ public class orderList extends AppCompatActivity {
                                             continue; //unfulfilled in the past
                                         }
                                     }
+                                    else if(month>Integer.parseInt(dateSplit[0])) //previous month
+                                    {
+                                        continue;//unfulfilled in the past
+                                    }
+                                }
+                                else if(year>Integer.parseInt(dateSplit[2])) //previous year
+                                {
+                                    continue;//unfulfilled in the past
                                 }
                                 String orderUIDTemp=order.getKey();
                                 String vendNameTemp=order.child("vendName").getValue().toString();

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class vendProf extends AppCompatActivity {
@@ -32,6 +35,7 @@ public class vendProf extends AppCompatActivity {
     TextView vendMail;
     TextView vendPhone;
     TextView vendRating;
+    RatingBar vendStars;
     TextView vendOrders;
 
     String vendorName;
@@ -54,9 +58,9 @@ public class vendProf extends AppCompatActivity {
     //show vendors in same city only - med
 
     //todo vendProf
-    //grab dummy stars and review from database - high
     //change layout, display hours with dummy data - med
     //button to see reviews -> make new activity reviewList - high
+    //show newly placed order in orderDetails activity - med
 
     //todo reviewList - has requirements before continuing
     //custom class with stars and review, maybe person's name - high
@@ -65,8 +69,6 @@ public class vendProf extends AppCompatActivity {
     order order=new order();
 
     DatabaseReference database=FirebaseDatabase.getInstance().getReference();
-
-    private static final DecimalFormat dfZero=new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,7 @@ public class vendProf extends AppCompatActivity {
         vendMail=(TextView) findViewById(R.id.vendMail);
         vendPhone=(TextView) findViewById(R.id.vendPhone);
         vendRating=(TextView) findViewById(R.id.vendRating);
+        vendStars=(RatingBar)findViewById(R.id.ratingStars);
         vendOrders=(TextView) findViewById(R.id.vendOrders);
 
         //get stars from database
@@ -92,7 +95,6 @@ public class vendProf extends AppCompatActivity {
 
         //add a button to see all reviews?
         //custom adapter and review formatting
-        
 
         Query vendQuery=database.child("Vendors").orderByChild(vendUID);
 
@@ -106,8 +108,6 @@ public class vendProf extends AppCompatActivity {
                     vendAddr.setText("Address: "+dataSnapshot.child(vendUID).child("address").getValue().toString());
                     vendMail.setText("Email: "+dataSnapshot.child(vendUID).child("companyEmail").getValue().toString());
                     vendPhone.setText("Phone: "+dataSnapshot.child(vendUID).child("companyPhone").getValue().toString());
-                    //vendRating.setText();
-                    //vendOrders.setText();
                 }
                 else{
                     Toast.makeText(vendProf.this, "Error retrieving vendor information", Toast.LENGTH_LONG).show();
@@ -120,7 +120,51 @@ public class vendProf extends AppCompatActivity {
             }
         });
 
-        Button button = (Button) findViewById(R.id.button);
+        Query ordCompQuery=database.child("Orders").orderByChild("vendUID").equalTo(vendUID);
+
+        ordCompQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    int ordersComp=0;
+                    List ratings=new ArrayList<Float>();
+                    float avgRating = 0;
+
+                    for(DataSnapshot order:snapshot.getChildren())
+                    {
+                        if(Integer.parseInt(order.child("completed").getValue().toString())==1)
+                        {
+                            ordersComp++;
+                            ratings.add(Float.parseFloat(order.child("rating").getValue().toString()));
+                        }
+                    }
+
+                    if(!ratings.isEmpty())
+                    {
+                        for(Object stars:ratings)
+                        {
+                            avgRating=avgRating+(float)stars;
+                        }
+                        avgRating=avgRating/ratings.size();
+                    }
+
+                    vendStars.setRating(avgRating);
+                    vendOrders.setText(ordersComp);
+                }
+                else
+                {
+                    Toast.makeText(vendProf.this, "Error retrieving vendor information", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(vendProf.this, "Error retrieving vendor information", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button button = (Button) findViewById(R.id.button);//schedule button
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -139,15 +183,23 @@ public class vendProf extends AppCompatActivity {
         Intent payment=new Intent(this,Payment.class);
         startActivityForResult(payment,2);
     }
-    public void uploadOrder() //could this be moved to the order class?
+    public void openOrderDetail(String orderUID)
     {
+        Intent order=new Intent();
+        order.putExtra("orderUID",orderUID);
+        startActivityForResult(order,3);
+    }
+    public void uploadOrder()
+    {
+        String key=database.child("Orders").push().getKey();
+
         order.setUserUID(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         order.setVendorName(vendorName);
         order.setVendUID(vendUID);
         order.setStatus(0);
 
-        if(order.uploadOrder(database))
+        if(order.uploadOrder(database,key))
         {
             Toast.makeText(this, "Order submitted", Toast.LENGTH_LONG).show();
         }
@@ -155,6 +207,9 @@ public class vendProf extends AppCompatActivity {
         {
             Toast.makeText(this, "Error submitting order", Toast.LENGTH_LONG).show();
         }
+
+        openOrderDetail(key);
+
         finish();
     }
     protected void onActivityResult(int reqCode, int resCode, Intent data) {
@@ -188,7 +243,7 @@ public class vendProf extends AppCompatActivity {
                     case RESULT_OK:
 
                         order.setPrice(Float.parseFloat("50.25"));
-                        //hardcoded, needs to check from database when whoever in charge adds test data
+                        //hardcoded, needs to check from database or previous activity when whoever in charge implements functionality
 
                         uploadOrder();
                         break;
@@ -197,6 +252,22 @@ public class vendProf extends AppCompatActivity {
                         break;
                     default:
                         Toast.makeText(this, "Error retrieving information", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            case 3: //orderDetails
+                switch(resCode)
+                {
+                    case RESULT_OK: //changed or cancelled
+                        Toast.makeText(this, "Changes saved successfully", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2: //user presses back
+                        Toast.makeText(this, "Changes cancelled", Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(this, "Your order has been cancelled", Toast.LENGTH_LONG).show();
+                        break;
+                    default:
+                        Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_LONG).show();
                         break;
                 }
             default:

@@ -18,6 +18,8 @@ public class order{
     String vendorName;
     String vendUID;
     String userUID;
+    int rating;
+    String review;
     int status; //0 in progress, 1 finished, -1 cancelled
 
     public order()
@@ -29,6 +31,8 @@ public class order{
         this.vendorName=null;
         this.vendUID=null;
         this.userUID=null;
+        this.rating=0;
+        this.review="";
         this.status=0;
     }
 
@@ -53,9 +57,17 @@ public class order{
     {
         vendUID=vendorUID;
     }
-    public void setUserUID(String useUID)
+    public void setUserUID(String userUID)
     {
-        userUID=useUID;
+        userUID=userUID;
+    }
+    public void setRating(int stars)
+    {
+        rating=stars;
+    }
+    public void setReview(String comment)
+    {
+        review=comment;
     }
     public void setStatus(int stat)
     {
@@ -72,15 +84,16 @@ public class order{
         newOrder.put("vendName",vendorName);
         newOrder.put("vendUID",vendUID);
         newOrder.put("userUID",userUID);
+        newOrder.put("rating",rating);
+        newOrder.put("review",review);
         newOrder.put("completed",status);
 
         return newOrder;
     }
 
-    public boolean uploadOrder(DatabaseReference database)
+    public boolean uploadOrder(DatabaseReference database, String key)
     {
         final boolean[] success = {false};
-        String key=database.child("Orders").push().getKey();
         Map<String,Object> orderDetails=toMap();
         Map<String,Object> childUpdate=new HashMap<>();
         childUpdate.put("/Orders/"+key,orderDetails);

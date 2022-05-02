@@ -127,12 +127,6 @@ public class orderList extends AppCompatActivity {
                     orderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            //get orderUID from clicked item - done
-                            //pass to details - done
-                            //details will query and display data and give 2 buttons - done
-                            //cancel will give a prompt to confirm and set order to -1 - done
-                            //change will open up schedule or its own custom activity to change - in progress
-                            //both will finish, then orderlist will finish
                             orderUID=listOfOrders.get(i).getOrderUID();
 
                             Intent detail=new Intent(orderList.this, orderDetails.class);

@@ -24,6 +24,23 @@
         app:layout_constraintVertical_chainStyle="spread" />
 
     <TextView
+        android:id="@+id/vendNameText"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="vendor_name"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/vendMail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.084"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <TextView
         android:id="@+id/vendAddr"
         android:layout_width="350dp"
         android:layout_height="75dp"
@@ -67,9 +84,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vendMail" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/vendRating"
-        android:layout_width="175dp"
+        android:layout_width="350dp"
         android:layout_height="75dp"
         android:gravity="center"
         android:text="Rating: Unavailable"
@@ -77,7 +94,34 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/vendOrders"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendPhone" />-->
+
+    <TextView
+        android:id="@+id/vendRating"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:gravity="center"
+        android:text="Rating: "
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/vendOrders"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendPhone" />
+
+    <RatingBar
+        android:id="@+id/ratingStars"
+        android:layout_width="175dp"
+        android:layout_height="75dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:foregroundGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/vendOrders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vendPhone" />
 

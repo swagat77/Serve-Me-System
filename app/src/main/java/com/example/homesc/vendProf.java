@@ -57,8 +57,6 @@ public class vendProf extends AppCompatActivity {
     //grab dummy stars and review from database - high
     //change layout, display hours with dummy data - med
     //button to see reviews -> make new activity reviewList - high
-    //email vendor about order, notifications is swagats job - high
-    //move upLoad order to order.class - low
 
     //todo reviewList - has requirements before continuing
     //custom class with stars and review, maybe person's name - high
@@ -149,13 +147,14 @@ public class vendProf extends AppCompatActivity {
         order.setVendUID(vendUID);
         order.setStatus(0);
 
-        String key=database.child("Orders").push().getKey();
-        Map<String,Object> orderDetails=order.toMap();
-        Map<String,Object> childUpdate=new HashMap<>();
-        childUpdate.put("/Orders/"+key,orderDetails);
-
-        database.updateChildren(childUpdate);
-        Toast.makeText(this, "Order submitted", Toast.LENGTH_LONG).show();
+        if(order.uploadOrder(database))
+        {
+            Toast.makeText(this, "Order submitted", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Toast.makeText(this, "Error submitting order", Toast.LENGTH_LONG).show();
+        }
         finish();
     }
     protected void onActivityResult(int reqCode, int resCode, Intent data) {

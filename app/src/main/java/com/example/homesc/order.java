@@ -1,5 +1,10 @@
 package com.example.homesc;
 
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
@@ -59,16 +64,33 @@ public class order{
 
     @Exclude
     public Map<String, Object> toMap() {
-        HashMap<String, Object>result=new HashMap<>();
-        result.put("price",price);
-        result.put("apptDate",date);
-        result.put("apptTime",time);
-        result.put("apptAddr",address);
-        result.put("vendName",vendorName);
-        result.put("vendUID",vendUID);
-        result.put("userUID",userUID);
-        result.put("completed",status);
+        HashMap<String, Object>newOrder=new HashMap<>();
+        newOrder.put("price",price);
+        newOrder.put("apptDate",date);
+        newOrder.put("apptTime",time);
+        newOrder.put("apptAddr",address);
+        newOrder.put("vendName",vendorName);
+        newOrder.put("vendUID",vendUID);
+        newOrder.put("userUID",userUID);
+        newOrder.put("completed",status);
 
-        return result;
+        return newOrder;
+    }
+
+    public boolean uploadOrder(DatabaseReference database)
+    {
+        final boolean[] success = {false};
+        String key=database.child("Orders").push().getKey();
+        Map<String,Object> orderDetails=toMap();
+        Map<String,Object> childUpdate=new HashMap<>();
+        childUpdate.put("/Orders/"+key,orderDetails);
+
+        database.updateChildren(childUpdate).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                success[0] =true;
+            }
+        });
+        return success[0];
     }
 }

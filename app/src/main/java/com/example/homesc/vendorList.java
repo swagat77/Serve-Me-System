@@ -78,5 +78,7 @@ public class vendorList extends AppCompatActivity {
             }
         });
 
+        Query orderQuery;
+
     }
 }

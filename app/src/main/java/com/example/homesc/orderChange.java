@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
 
 public class orderChange extends AppCompatActivity {
-
     String orderUID;
     String vendName;
     String apptAddr;
@@ -48,6 +47,14 @@ public class orderChange extends AppCompatActivity {
     int year = calendar.get(Calendar.YEAR); //sets year to current
     int month = calendar.get(Calendar.MONTH); //sets month to current
     int day = calendar.get(Calendar.DAY_OF_MONTH); //sets day to current
+
+    int AMPM=calendar.get(Calendar.AM_PM);
+    int hour=AMPM==1?calendar.get(Calendar.HOUR)-12:calendar.get(Calendar.HOUR);
+    int min=calendar.get(Calendar.MINUTE);
+
+    String dayOrNight;
+    String longHour;
+    String longMin;
 
     String apptTime;
     String apptDate;
@@ -114,6 +121,12 @@ public class orderChange extends AppCompatActivity {
 
         date.setText(apptDate); //changes text to apptDate
 
+        dayOrNight=hour<12?"AM":"PM"; //checks whether appointment is am or pm
+        longHour=hour<13?String.valueOf(hour+1):String.valueOf(hour-11); //formats hour to 12 hour format, an hour ahead
+        longMin=min<10?"0"+min: String.valueOf(min); //adds an extra 0 to the front if only single digit
+
+        time.setText(longHour + ":" + longMin + " " + dayOrNight);
+
         dateBtn.setOnClickListener(new View.OnClickListener() { //select date button
             @Override
             public void onClick(View v) {
@@ -137,7 +150,7 @@ public class orderChange extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() { //confirm button
             @Override
             public void onClick(View v) {
-                street = addrLine1Input.getText().toString().trim();
+                street = addrLine1Input.getText().toString().trim()+ addrLine2Input.getText().toString().trim();
                 city = cityInput.getText().toString().trim();
                 state = stateInput.getText().toString().trim();
                 zipcode = zipcodeInput.getText().toString().trim();
@@ -190,9 +203,9 @@ public class orderChange extends AppCompatActivity {
                         {
                             Toast.makeText(orderChange.this, "Vendor will be closed, select a different time", Toast.LENGTH_LONG).show();
                         } else {
-                            final String dayOrNight = hour < 12 ? "AM" : "PM"; //checks whether appointment is am or pm
-                            final String longHour = hour < 13 ? String.valueOf(hour) : String.valueOf(hour - 12); //formats hour to 12 hour format
-                            final String longMin = min < 10 ? "0" + min : String.valueOf(min); //adds an extra 0 to the front if only single digit
+                            dayOrNight = hour < 12 ? "AM" : "PM"; //checks whether appointment is am or pm
+                            longHour = hour < 13 ? String.valueOf(hour) : String.valueOf(hour - 12); //formats hour to 12 hour format
+                            longMin = min < 10 ? "0" + min : String.valueOf(min); //adds an extra 0 to the front if only single digit
                             apptTime = longHour + ":" + longMin + " " + dayOrNight;
 
                             time.setText(apptTime); //does not change textview until valid hours are selected

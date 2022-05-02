@@ -59,9 +59,7 @@ public class vendProf extends AppCompatActivity {
     //show vendors in same city only - med
 
     //todo vendProf
-    //change layout, display hours with dummy data - med
     //button to see reviews -> make new activity reviewList - high
-    //show newly placed order in orderDetails activity - med
 
     //todo reviewList - has requirements before continuing
     //custom class with stars and review, maybe person's name - high

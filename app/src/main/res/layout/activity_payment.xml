@@ -113,7 +113,7 @@
         android:layout_height="63dp"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:inputType="phone"
+        android:inputType="numberPassword"
         android:maxLength="3"
         app:layout_constraintBottom_toTopOf="@+id/spaceforexpdate"
         app:layout_constraintEnd_toEndOf="parent"

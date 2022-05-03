@@ -201,7 +201,7 @@ public class vendProf extends AppCompatActivity {
     }
     public void openOrderDetail(String orderUID)
     {
-        Intent order=new Intent();
+        Intent order=new Intent(this,orderDetails.class);
         order.putExtra("orderUID",orderUID);
         startActivityForResult(order,3);
     }
@@ -270,6 +270,7 @@ public class vendProf extends AppCompatActivity {
                         Toast.makeText(this, "Error retrieving information", Toast.LENGTH_LONG).show();
                         break;
                 }
+                break;
             case 3: //orderDetails
                 switch(resCode)
                 {
@@ -277,7 +278,6 @@ public class vendProf extends AppCompatActivity {
                         Toast.makeText(this, "Changes saved successfully", Toast.LENGTH_LONG).show();
                         break;
                     case 2: //user presses back
-                        Toast.makeText(this, "Changes cancelled", Toast.LENGTH_LONG).show();
                         break;
                     case 3:
                         Toast.makeText(this, "Your order has been cancelled", Toast.LENGTH_LONG).show();
@@ -286,6 +286,7 @@ public class vendProf extends AppCompatActivity {
                         Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_LONG).show();
                         break;
                 }
+                break;
             default:
                 Toast.makeText(this, "An error occurred, please try again", Toast.LENGTH_LONG).show();
                 break;

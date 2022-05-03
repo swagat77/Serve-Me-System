@@ -65,20 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addrLine1" />
 
-    <!--<Spinner
-        android:id="@+id/state"
-        android:layout_width="175dp"
-        android:layout_height="75dp"
-        android:layout_marginStart="32dp"
-        android:prompt="State"
-        android:entries="@array/statesArr"
-        app:layout_constraintBottom_toTopOf="@+id/dateDisp"
-        app:layout_constraintEnd_toStartOf="@+id/zipcode"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city"
-        app:layout_constraintVertical_bias="0.469" />-->
-
     <EditText
         android:id="@+id/state"
         android:layout_width="175dp"
@@ -182,7 +168,6 @@
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:backgroundTint="@color/purple_200"
-        android:enabled="false"
         android:gravity="center"
         android:text="Confirm Request"
         android:textAlignment="center"

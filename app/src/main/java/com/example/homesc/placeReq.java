@@ -42,8 +42,6 @@ public class placeReq extends AppCompatActivity {
     //currently hard coded, needs to be changed to check vendor data in database when whoever
     //was in charge of that adds the test data
 
-
-
     TextView vendName;
 
     private Button confirmBtn;
@@ -100,16 +98,6 @@ public class placeReq extends AppCompatActivity {
 
         timeBtn=(Button)findViewById(R.id.timeButton);
         time=(TextView) findViewById(R.id.timeDisp);
-
-        //ArrayAdapter state
-
-        /*stateInput.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-
-            }
-        });*/
-
 
         //change time placeholder text to current time+one hour
         if((hour+2)<vendOpen) //checks if current hour+2 is within vendor hours. if before open, sets to when vendor opens
@@ -188,7 +176,6 @@ public class placeReq extends AppCompatActivity {
             }
             city=cityInput.getText().toString().trim();
             state=stateInput.getText().toString().trim();
-            //get spinner pos
             zipcode=zipcodeInput.getText().toString().trim();
 
             address=street+", "+city+", "+state+", "+zipcode;

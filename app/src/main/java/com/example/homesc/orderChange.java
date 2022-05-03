@@ -142,12 +142,22 @@ public class orderChange extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() { //confirm button
             @Override
             public void onClick(View v) {
-                street = addrLine1Input.getText().toString().trim()+ addrLine2Input.getText().toString().trim();
-                city = cityInput.getText().toString().trim();
-                state = stateInput.getText().toString().trim();
-                zipcode = zipcodeInput.getText().toString().trim();
+                String addrLine1=addrLine1Input.getText().toString().trim();
+                String addrLine2=addrLine2Input.getText().toString().trim();
 
-                address = street + ", " + city + ", " + state + ", " + zipcode;
+                if(addrLine2.isEmpty())
+                {
+                    street=addrLine1;
+                }
+                else
+                {
+                    street=addrLine1+", "+addrLine2;
+                }
+                city=cityInput.getText().toString().trim();
+                state=stateInput.getText().toString().trim();
+                zipcode=zipcodeInput.getText().toString().trim();
+
+                address=street+", "+city+", "+state+", "+zipcode;
 
                 if(!(street.isEmpty()&&city.isEmpty()&&state.isEmpty()&&zipcode.isEmpty()))
                 {

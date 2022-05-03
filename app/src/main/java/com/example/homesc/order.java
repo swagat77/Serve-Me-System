@@ -2,13 +2,18 @@ package com.example.homesc;
 
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 public class order{
     float price;
@@ -21,6 +26,7 @@ public class order{
     int rating;
     String review;
     int status; //0 in progress, 1 finished, -1 cancelled
+    boolean success;
 
     public order()
     {
@@ -59,7 +65,7 @@ public class order{
     }
     public void setUserUID(String userUID)
     {
-        userUID=userUID;
+        this.userUID=userUID;
     }
     public void setRating(int stars)
     {
@@ -93,7 +99,7 @@ public class order{
 
     public boolean uploadOrder(DatabaseReference database, String key)
     {
-        final boolean[] success = {false};
+        success=false;
         Map<String,Object> orderDetails=toMap();
         Map<String,Object> childUpdate=new HashMap<>();
         childUpdate.put("/Orders/"+key,orderDetails);
@@ -101,9 +107,9 @@ public class order{
         database.updateChildren(childUpdate).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                success[0] =true;
+                success=true;
             }
         });
-        return success[0];
+        return success;
     }
 }

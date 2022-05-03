@@ -151,7 +151,7 @@ public class vendProf extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(vendProf.this, "Error retrieving vendor information", Toast.LENGTH_LONG).show();
+                //Toast.makeText(vendProf.this, "Error retrieving vendor information", Toast.LENGTH_LONG).show();
             }
         });
 

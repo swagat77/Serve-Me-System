@@ -94,7 +94,7 @@ public class orderDetails extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(orderDetails.this, "Error retrieving order information", Toast.LENGTH_LONG).show();
+                //Toast.makeText(orderDetails.this, "Error retrieving order information", Toast.LENGTH_LONG).show();
             }
         });
 

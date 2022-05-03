@@ -183,6 +183,7 @@ public class vendProf extends AppCompatActivity {
     {
         Intent review=new Intent(this, reviewList.class);
         review.putExtra("vendUID",vendUID);
+        review.putExtra("vendName",vendorName);
         startActivity(review);
     }
     public void openPlaceReq()

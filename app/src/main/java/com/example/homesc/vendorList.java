@@ -66,7 +66,7 @@ public class vendorList extends AppCompatActivity {
                             Intent intent=new Intent(vendorList.this, vendProf.class);
                             intent.putExtra("vendUID", (String) vendUID.get(pos));
                             startActivity(intent);
-                            finish();
+                            //finish();
                         }
 
                     });

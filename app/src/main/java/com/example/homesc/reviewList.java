@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class reviewList extends AppCompatActivity {
 
     String vendUID;
+    String vendName;
 
     TextView reviewLabel;
     ListView reviewList;
@@ -32,9 +33,12 @@ public class reviewList extends AppCompatActivity {
         setContentView(R.layout.activity_review_list);
 
         vendUID=getIntent().getStringExtra("vendUID");
+        vendName=getIntent().getStringExtra("vendName");
 
         reviewLabel=(TextView) findViewById(R.id.reviewListLabel);
         reviewList=(ListView) findViewById(R.id.reviewList);
+
+        reviewLabel.setText("All Reviews for "+vendName);
 
         Query ordQuery=database.child("Orders").orderByChild(vendUID);
 
@@ -46,16 +50,40 @@ public class reviewList extends AppCompatActivity {
                     ArrayList<reviewItem> reviews=new ArrayList<>();
                     for(DataSnapshot order:snapshot.getChildren())
                     {
-                        if(order.child("vendUID").getValue().toString()==vendUID)
+                        if(vendUID.equals(order.child("vendUID").getValue().toString()))
                         {
-                            reviewItem reviewItem=new reviewItem("placeholder",
-                                                                    Float.parseFloat(order.child("rating").getValue().toString()),
-                                                                    order.child("review").getValue().toString());
-                            reviews.add(reviewItem);
+                            if(Float.parseFloat(order.child("rating").getValue().toString())>=0)
+                            {
+                                reviewItem reviewItem=new reviewItem("placeholder",
+                                        Float.parseFloat(order.child("rating").getValue().toString()),
+                                        order.child("review").getValue().toString());
+                                reviews.add(reviewItem);
+
+                                /*if(order.child("review").getValue().toString()==null)
+                                {
+                                    reviewItem reviewItem=new reviewItem("placeholder",
+                                            Float.parseFloat(order.child("rating").getValue().toString()),
+                                            "");
+                                    reviews.add(reviewItem);
+                                }
+                                else
+                                {
+                                    reviewItem reviewItem=new reviewItem("placeholder",
+                                            Float.parseFloat(order.child("rating").getValue().toString()),
+                                            order.child("review").getValue().toString());
+                                    reviews.add(reviewItem);
+                                }*/
+
+                            }
+                            else
+                            {
+                                continue;//not rated yet
+                            }
+
                         }
                         else
                         {
-                            continue;
+                            continue;//not vendor's review
                         }
                     }
 

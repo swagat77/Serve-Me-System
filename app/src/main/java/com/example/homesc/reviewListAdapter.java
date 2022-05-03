@@ -37,7 +37,6 @@ public class reviewListAdapter extends ArrayAdapter<reviewItem>{
         RatingBar rating=(RatingBar) convView.findViewById(R.id.listRating);
         TextView comment=(TextView) convView.findViewById(R.id.listReview);
 
-
         username.setText(review.getItemUserName());
         rating.setRating(review.getitemRating());
         comment.setText(review.getItemReview());

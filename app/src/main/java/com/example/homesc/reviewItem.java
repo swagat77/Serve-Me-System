@@ -5,11 +5,11 @@ public class reviewItem {
     private float itemRating;
     private String itemReview;
 
-    public reviewItem(String userName, float rating, String vendName)
+    public reviewItem(String userName, float rating, String comment)
     {
         this.itemUserName =userName;
         this.itemRating=rating;
-        this.itemReview =vendName;
+        this.itemReview =comment;
 
     }
     public void setItemUserName(String itemUserName)

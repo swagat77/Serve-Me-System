@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,6 +39,9 @@ public class vendorList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_list);
+
+        getSupportActionBar().setTitle("Vendor List"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
 
         categoryLabel=(TextView) findViewById(R.id.categoryLabel);
         vendList=(ListView) findViewById(R.id.vendList);
@@ -78,5 +82,15 @@ public class vendorList extends AppCompatActivity {
             }
         });
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

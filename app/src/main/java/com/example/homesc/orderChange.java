@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -210,5 +211,16 @@ public class orderChange extends AppCompatActivity {
     public void onBackPressed() {
         setResult(2);
         super.onBackPressed();
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                setResult(2);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

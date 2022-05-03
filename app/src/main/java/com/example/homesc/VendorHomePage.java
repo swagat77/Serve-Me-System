@@ -57,6 +57,7 @@ public class VendorHomePage extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vendor_home_page);
 
+        getSupportActionBar().setTitle("Vendor Homepage"); //renames action bar
 
         toOrder = (Button) findViewById(R.id.toOrder);
         toOrder.setOnClickListener(this);
@@ -142,7 +143,7 @@ public class VendorHomePage extends AppCompatActivity implements View.OnClickLis
         {
             Intent inten = new Intent(VendorHomePage.this, VendorHomePage.class);
             startActivity(inten);
-
+            finish();
         }
         else
         {

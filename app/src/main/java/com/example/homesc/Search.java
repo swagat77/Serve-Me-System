@@ -28,6 +28,9 @@ public class Search extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        getSupportActionBar().setTitle("Search"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+
       Search_SMS =(ListView)findViewById(R.id.Search_SMS);
 
         ArrayList<String> arrayVendors = new ArrayList<>();
@@ -87,6 +90,16 @@ public class Search extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

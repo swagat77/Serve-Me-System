@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -53,6 +54,10 @@ public class openvendororders extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_openvendororders);
+
+        getSupportActionBar().setTitle("Open Orders"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+
         layoutList = findViewById(R.id.linearLayout);
         complete = (Button) findViewById(R.id.complete);
         complete.setOnClickListener(this);
@@ -146,7 +151,16 @@ public class openvendororders extends AppCompatActivity implements View.OnClickL
 
         }
     }
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void updateStatus() {
 

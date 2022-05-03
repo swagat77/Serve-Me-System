@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -37,15 +38,6 @@ public class vendProf extends AppCompatActivity {
     TextView vendOrders;
 
     String vendorName;
-
-    //todo all
-    //add progress bar for all activities that have to grab from database - low
-    //back arrows - high
-
-    //todo vendorList
-    //make custom adapter and layout - low
-    //add address and rating in layout - low
-    //show vendors in same city only - med
 
     order order=new order();
 
@@ -178,6 +170,16 @@ public class vendProf extends AppCompatActivity {
                 openPlaceReq();
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item) //enables action bar back button functionality
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     public void openReviewList()
     {

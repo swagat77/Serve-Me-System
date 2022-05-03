@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,9 @@ public class reviewList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
+
+        getSupportActionBar().setTitle("Review List"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
 
         vendUID=getIntent().getStringExtra("vendUID");
         vendName=getIntent().getStringExtra("vendName");
@@ -85,6 +89,16 @@ public class reviewList extends AppCompatActivity {
             }
         });
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

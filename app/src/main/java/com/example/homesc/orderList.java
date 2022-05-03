@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -38,9 +39,12 @@ public class orderList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Pending Orders"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+
+        //getSupportActionBar().hide();
         //little break from coding.
-        //hides that top bar, theres a better way to do this via manifest but thats for later
+        //hides that top bar, more screen real estate
 
         tempTV=(TextView)findViewById(R.id.disclaimer);
 
@@ -170,7 +174,6 @@ public class orderList extends AppCompatActivity {
                         Toast.makeText(this, "Changes saved successfully", Toast.LENGTH_LONG).show();
                         break;
                     case 2: //user presses back
-                        Toast.makeText(this, "Changes cancelled", Toast.LENGTH_LONG).show();
                         break;
                     case 3:
                         Toast.makeText(this, "Your order has been cancelled", Toast.LENGTH_LONG).show();
@@ -184,5 +187,15 @@ public class orderList extends AppCompatActivity {
                 Toast.makeText(this, "An error occurred. Please try again", Toast.LENGTH_LONG).show();
                 break;
         }
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

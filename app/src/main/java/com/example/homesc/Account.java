@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,10 @@ public class Account extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        getSupportActionBar().setTitle("Account"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+
         Button Notifications = findViewById(R.id.toNotifications);
         Button PersonalInformation = findViewById(R.id.toPersonalInformation);
         Button Logout = findViewById(R.id.toLogOut);
@@ -26,7 +31,11 @@ public class Account extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Account.this, MainActivity.class));
+                //startActivity(new Intent(Account.this, MainActivity.class));
+                //above does not clear stack, user can still access app
+                Intent logout=new Intent(Account.this,MainActivity.class);
+                finishAffinity();
+                startActivity(logout);
             }
            /* @Override
             public void onClick(View view) {
@@ -66,6 +75,16 @@ public class Account extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

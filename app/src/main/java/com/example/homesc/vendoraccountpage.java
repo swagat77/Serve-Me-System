@@ -93,7 +93,9 @@ public class vendoraccountpage extends AppCompatActivity implements View.OnClick
         {
             FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(vendoraccountpage.this, VendorLogin.class);
+            finishAffinity();
             startActivity(intent);
+
         }
 
         else if(view.getId() == R.id.toOrder)
@@ -109,6 +111,7 @@ public class vendoraccountpage extends AppCompatActivity implements View.OnClick
         else if(view.getId() == R.id.Home)
         {
             Intent inten = new Intent(vendoraccountpage.this, VendorHomePage.class);
+            finishAffinity();
             startActivity(inten);
 
         }

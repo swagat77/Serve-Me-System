@@ -22,15 +22,13 @@ import java.util.List;
 
 public class orderhistory extends AppCompatActivity {
 
-    List orders=new ArrayList<String>();
-    List orderUID=new ArrayList<String>();
-
-    DatabaseReference database= FirebaseDatabase.getInstance().getReference();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_orderhistory);
+
+        getSupportActionBar().setTitle("Order History"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
 
         ListView orderhistory = findViewById(R.id.orderhistory);
 
@@ -61,6 +59,15 @@ public class orderhistory extends AppCompatActivity {
             }
         });
     }
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        getSupportActionBar().setTitle("Login"); //renames action bar
 
         VendorSignIn = (Button) findViewById(R.id.VendorLogin);
         VendorSignIn.setOnClickListener(this);
@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void userLogin() {
-        //String email = editEmail.getText().toString().trim();
-        //String password = editPassword.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String password = editPassword.getText().toString().trim();
 
-        String email = "rockswagat77@gmail.com";
-        String password = "Swagat12";
+        //String email = "rockswagat77@gmail.com";
+        //String password = "Swagat12";
 
         if (email.isEmpty()) {
             editEmail.setError("An email is required");
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             Intent intent = new Intent(MainActivity.this, UserHomePage.class);
                             startActivity(intent);
+                            finish();
                         }
 
                      else {

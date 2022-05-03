@@ -24,6 +24,9 @@ public class    UserHomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userhomepage);
+
+        getSupportActionBar().setTitle("Homepage"); //renames action bar
+
         Button Account = findViewById(R.id.LinktoAccount);
         Button Order = findViewById(R.id.LinktoOrderpage);
         Button Search = findViewById(R.id.LinktoSearchPage);
@@ -39,11 +42,11 @@ public class    UserHomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //startActivity(new Intent(UserHomePage.this, Account.class));
-                Intent intent = new Intent(UserHomePage.this, Account.class); //this line does nothing
+                Intent intent = new Intent(UserHomePage.this, Account.class); //this line does nothing if above is true
                 startActivity(intent);
             }
         });
-        //atrocious, will make it a dynamic gridview after presentation
+
         appliances.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,15 +96,12 @@ public class    UserHomePage extends AppCompatActivity {
             }
         });
         home.setOnClickListener(new View.OnClickListener() {
-            //why? why isnt this whole thing just a fragment view
-            //none of the other screens have buttons that would let them hit home
-            //this just adds more activities to the stack and sucks more memory than chrome
-            //finish(); would be way better
             @Override
             public void onClick(View view) {
                 //startActivity(new Intent(UserHomePage.this, UserHomePage.class));
                 Intent intent = new Intent(UserHomePage.this, UserHomePage.class);
                 startActivity(intent);
+                finish();
             }
         });
         Search.setOnClickListener(new View.OnClickListener() {

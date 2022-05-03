@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -37,6 +38,9 @@ public class RegisterVendor extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_vendor);
 
+        getSupportActionBar().setTitle("Vendor Registration"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
+
         mAuth = FirebaseAuth.getInstance();
 
         registerVendor = (Button) findViewById(R.id.registerVendor);
@@ -58,7 +62,16 @@ public class RegisterVendor extends AppCompatActivity implements View.OnClickLis
             registerVendor();
         }
     }
-
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public void registerVendor()
     {
         String companyemail = editTextEmail.getText().toString().trim();

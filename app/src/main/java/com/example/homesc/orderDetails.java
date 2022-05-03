@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -47,6 +48,9 @@ public class orderDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
+
+        getSupportActionBar().setTitle("Order Details"); //renames action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //enables back arrow in top bar
 
         orderUIDLabel=(TextView) findViewById(R.id.orderUIDLabel);
         vendNameLabel=(TextView) findViewById(R.id.vendNameLabel);
@@ -147,6 +151,17 @@ public class orderDetails extends AppCompatActivity {
         change.putExtra("vendName",vendName);
         startActivityForResult(change,1);
     }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case android.R.id.home:
+                setResult(2);
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     protected void onActivityResult(int reqCode, int resCode, Intent data)
     {
         super.onActivityResult(reqCode, resCode, data);
@@ -158,7 +173,7 @@ public class orderDetails extends AppCompatActivity {
                         setResult(RESULT_OK);
                         break;
                     case 2:
-                        setResult(2);
+                        Toast.makeText(this, "Changes cancelled", Toast.LENGTH_LONG).show();
                         break;
                     default:
                         setResult(RESULT_CANCELED);
@@ -169,6 +184,5 @@ public class orderDetails extends AppCompatActivity {
                 setResult(RESULT_CANCELED);
                 break;
         }
-        finish();
     }
 }

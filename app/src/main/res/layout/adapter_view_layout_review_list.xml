@@ -9,16 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <TextView
-        android:textAlignment="textStart"
-        android:text="name"
-        android:textSize="20sp"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:id="@+id/listUserName"
-        android:layout_width="200dp"
-        android:layout_height="43dp" />
-
         <RatingBar
             style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="180dp"

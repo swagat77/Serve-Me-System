@@ -22,6 +22,8 @@ public class reviewList extends AppCompatActivity {
     String vendUID;
     String vendName;
 
+    String userUIDTemp;
+
     TextView reviewLabel;
     ListView reviewList;
 
@@ -42,7 +44,7 @@ public class reviewList extends AppCompatActivity {
 
         Query ordQuery=database.child("Orders").orderByChild(vendUID);
 
-        ordQuery.addValueEventListener(new ValueEventListener() {
+        ordQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists())
@@ -50,30 +52,15 @@ public class reviewList extends AppCompatActivity {
                     ArrayList<reviewItem> reviews=new ArrayList<>();
                     for(DataSnapshot order:snapshot.getChildren())
                     {
-                        if(vendUID.equals(order.child("vendUID").getValue().toString()))
+                        if(vendUID.equals(order.child("vendUID").getValue().toString()))//checks if vendor's order
                         {
-                            if(Float.parseFloat(order.child("rating").getValue().toString())>=0)
+
+                            if(Float.parseFloat(order.child("rating").getValue().toString())>=0)//checks to see if it has been rated
                             {
-                                reviewItem reviewItem=new reviewItem("placeholder",
-                                        Float.parseFloat(order.child("rating").getValue().toString()),
-                                        order.child("review").getValue().toString());
+                                userUIDTemp=order.child("userUID").getValue().toString();
+                                reviewItem reviewItem=new reviewItem(Float.parseFloat(order.child("rating").getValue().toString()),order.child("review").getValue().toString());
+
                                 reviews.add(reviewItem);
-
-                                /*if(order.child("review").getValue().toString()==null)
-                                {
-                                    reviewItem reviewItem=new reviewItem("placeholder",
-                                            Float.parseFloat(order.child("rating").getValue().toString()),
-                                            "");
-                                    reviews.add(reviewItem);
-                                }
-                                else
-                                {
-                                    reviewItem reviewItem=new reviewItem("placeholder",
-                                            Float.parseFloat(order.child("rating").getValue().toString()),
-                                            order.child("review").getValue().toString());
-                                    reviews.add(reviewItem);
-                                }*/
-
                             }
                             else
                             {
@@ -99,4 +86,5 @@ public class reviewList extends AppCompatActivity {
         });
 
     }
+
 }

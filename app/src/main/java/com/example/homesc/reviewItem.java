@@ -1,22 +1,16 @@
 package com.example.homesc;
 
 public class reviewItem {
-    private String itemUserName;
     private float itemRating;
     private String itemReview;
 
-    public reviewItem(String userName, float rating, String comment)
+    public reviewItem(float rating, String comment)
     {
-        this.itemUserName =userName;
         this.itemRating=rating;
         this.itemReview =comment;
 
     }
-    public void setItemUserName(String itemUserName)
-    {
-        this.itemUserName = itemUserName;
-    }
-    public void setApptAddr(float rating)
+    public void setItemRating(float rating)
     {
         this.itemRating=rating;
     }
@@ -24,18 +18,13 @@ public class reviewItem {
     {
         this.itemReview = itemReview;
     }
-
-    public String getItemUserName()
+    public float getItemRating()
     {
-        return itemUserName;
-    }
-    public float getitemRating()
-    {
-        return itemRating;
+        return this.itemRating;
     }
     public String getItemReview()
     {
-        return itemReview;
+        return this.itemReview;
     }
 
 }
